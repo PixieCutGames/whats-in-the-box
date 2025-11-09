@@ -3,6 +3,7 @@ import { FastifyInstance } from "fastify";
 import registerRoute from "../routes/register.js";
 import loginRoute from "../routes/login.js";
 import meRoute from "../routes/me.js";
+import changePasswordRoute from "../routes/change-password.js";
 import fastifyJwt from "@fastify/jwt";
 
 interface AuthOptions {
@@ -28,6 +29,7 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   fastify.register(registerRoute, { prefix: "/auth" });
   fastify.register(loginRoute, { prefix: "/auth" });
   fastify.register(meRoute, { prefix: "/auth" });
+  fastify.register(changePasswordRoute, { prefix: "/auth" });
 
   // add decorator to verify and get current user (example)
   fastify.decorate("authenticate", async (request, reply) => {

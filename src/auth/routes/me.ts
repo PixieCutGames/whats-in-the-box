@@ -5,8 +5,6 @@ const meRoute: FastifyPluginAsync = async (fastify, opts) => {
     "/me",
     { preHandler: fastify.authenticate },
     async (request, reply) => {
-      console.log("request: ", request.user);
-
       const userId = request.user.sub;
       try {
         const user = await fastify.prisma.user.findUnique({
@@ -21,7 +19,6 @@ const meRoute: FastifyPluginAsync = async (fastify, opts) => {
         return { user };
       } catch (err) {
         console.log(err);
-
         return reply.code(500).send({ error: "Internal server error" });
       }
     }
