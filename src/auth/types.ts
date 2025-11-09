@@ -1,6 +1,7 @@
 import { FastifyJwtNamespace } from "@fastify/jwt";
 import { PrismaClient } from "@prisma/client";
 import "fastify";
+import { ZodObject } from "zod";
 
 declare module "fastify" {
   interface FastifyInstance
@@ -10,6 +11,7 @@ declare module "fastify" {
 declare module "fastify" {
   interface FastifyInstance {
     prisma: PrismaClient;
+    userSchema?: ZodObject;
     authenticate: (req: any, reply: any) => Promise<void>;
   }
 }

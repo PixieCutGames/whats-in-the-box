@@ -3,7 +3,7 @@ import { z } from "zod";
 import { hashPassword } from "../utils/password.js";
 
 const schema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   password: z.string().min(8),
   name: z.string().optional(),
 });
@@ -20,7 +20,7 @@ const registerRoute: FastifyPluginAsync = async (fastify, opts) => {
     },
     async (request, reply) => {
       const body = request.body as any;
-      const parsed = schema.parse(body);
+      const parsed: any = (fastify.userSchema ?? schema).parse(body);
 
       const existing = await fastify.prisma.user.findUnique({
         where: { email: parsed.email },

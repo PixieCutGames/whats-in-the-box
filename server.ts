@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import { PrismaClient } from "./src/generated/prisma";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import dotenv from "dotenv";
+import { z } from "zod";
 import authPlugin from "./src/auth/plugin/auth-plugin";
 
 dotenv.config();
@@ -13,6 +14,11 @@ const prisma = new PrismaClient().$extends(withAccelerate());
 fastify.register(authPlugin as any, {
   prisma,
   jwtSecret: process.env.JWT_SECRET || "dev-secret",
+  userSchema: z.object({
+    email: z.email(),
+    password: z.string().min(8),
+    name: z.string().optional(),
+  }),
 });
 
 // Declare a route

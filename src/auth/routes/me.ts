@@ -9,7 +9,9 @@ const meRoute: FastifyPluginAsync = async (fastify, opts) => {
       try {
         const user = await fastify.prisma.user.findUnique({
           where: { id: userId },
-          select: { id: true, email: true, name: true }, // you can extend this with other safe fields
+          omit: {
+            password: true,
+          },
         });
 
         if (!user) {

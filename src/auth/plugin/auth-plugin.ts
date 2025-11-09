@@ -4,11 +4,14 @@ import registerRoute from "../routes/register.js";
 import loginRoute from "../routes/login.js";
 import meRoute from "../routes/me.js";
 import changePasswordRoute from "../routes/change-password.js";
+import updateUserRoute from "../routes/update-user.js";
 import fastifyJwt from "@fastify/jwt";
+import { ZodObject } from "zod";
 
 interface AuthOptions {
   prisma: any; // PrismaClient type in consuming app
   jwtSecret: string;
+  userSchema?: ZodObject;
 }
 
 const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
@@ -23,6 +26,10 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
     secret: opts.jwtSecret,
   });
 
+  if (opts.userSchema) {
+    fastify.decorate("userSchema", opts.userSchema);
+  }
+
   // CORS or other plugin can be enabled by the app
 
   // register routes
@@ -30,6 +37,10 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   fastify.register(loginRoute, { prefix: "/auth" });
   fastify.register(meRoute, { prefix: "/auth" });
   fastify.register(changePasswordRoute, { prefix: "/auth" });
+  fastify.register(updateUserRoute, { prefix: "/auth" });
+  // TODO: /refresh-token
+  // TODO: /forgot-password
+  // TODO: /reset-password
 
   // add decorator to verify and get current user (example)
   fastify.decorate("authenticate", async (request, reply) => {
