@@ -1,7 +1,9 @@
 import fp from "fastify-plugin";
 import { FastifyInstance } from "fastify";
-import registerRoute from "../routes/register";
-import loginRoute from "../routes/login";
+import registerRoute from "../routes/register.js";
+import loginRoute from "../routes/login.js";
+import meRoute from "../routes/me.js";
+import fastifyJwt from "@fastify/jwt";
 
 interface AuthOptions {
   prisma: any; // PrismaClient type in consuming app
@@ -16,7 +18,7 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   fastify.decorate("prisma", opts.prisma);
 
   // register jwt plugin
-  fastify.register(require("@fastify/jwt"), {
+  fastify.register(fastifyJwt, {
     secret: opts.jwtSecret,
   });
 
@@ -25,9 +27,10 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   // register routes
   fastify.register(registerRoute, { prefix: "/auth" });
   fastify.register(loginRoute, { prefix: "/auth" });
+  fastify.register(meRoute, { prefix: "/auth" });
 
   // add decorator to verify and get current user (example)
-  fastify.decorate("authenticate", async (request: any, reply: any) => {
+  fastify.decorate("authenticate", async (request, reply) => {
     try {
       await request.jwtVerify();
     } catch (err) {

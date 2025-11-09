@@ -1,6 +1,6 @@
 import { FastifyPluginAsync } from "fastify";
 import { z } from "zod";
-import { hashPassword } from "../utils/password";
+import { hashPassword } from "../utils/password.js";
 
 const schema = z.object({
   email: z.string().email(),

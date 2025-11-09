@@ -1,2 +1,2 @@
-export { default as authPlugin } from "./plugin/auth-plugin";
-export * from "./utils/password";
+export { default as authPlugin } from "./plugin/auth-plugin.js";
+export * from "./utils/password.js";

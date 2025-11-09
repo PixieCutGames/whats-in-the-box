@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "declaration": true,
-    "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "types": ["node"]
+    "target": "ES2022",                  // Modern JS features, top-level await supported
+    "module": "NodeNext",                // ESM compatible
+    "moduleResolution": "NodeNext",      // ESM resolution
+    "outDir": "dist",                    // For optional compiled output
+    "rootDir": "src",                    // Source files location
+    "esModuleInterop": true,             // Allows import from CJS modules
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,                      // Enable strict type-checking
+    "skipLibCheck": true,                // Skip type checking for node_modules
+    "resolveJsonModule": true,           // Allow importing JSON
+    "allowSyntheticDefaultImports": true // Allow default imports from CJS modules
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts"]
 }
