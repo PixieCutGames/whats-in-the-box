@@ -23,9 +23,11 @@ fastify.register(authPlugin as any, {
 
 // Declare a route
 
+const port = Number(process.env.PORT ?? 3002);
+
 fastify
-  .listen({ port: 3002, host: "127.0.0.1" })
-  .then(() => console.log("Server listening on http://localhost:3002"))
+  .listen({ port })
+  .then(() => console.log(`Server listening on ${port}`))
   .catch((err) => {
     fastify.log.error(err);
     process.exit(1);
