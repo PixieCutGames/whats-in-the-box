@@ -22,7 +22,10 @@ fastify.register(authPlugin as any, {
   }),
 });
 
-const allowedOrigins = [process.env.FRONTEND_URL, process.env.PRODUCTION_URL];
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.FRONTEND_LOCAL_URL,
+];
 
 await fastify.register(cors, {
   origin: (origin, cb) => {
