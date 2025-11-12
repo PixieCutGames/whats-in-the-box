@@ -22,10 +22,7 @@ fastify.register(authPlugin as any, {
   }),
 });
 
-const allowedOrigins = [
-  "http://localhost:5173", // local dev
-  "https://whats-in-the-box-git-dev-pixiecuts-projects.vercel.app/", // your production frontend
-];
+const allowedOrigins = [process.env.FRONTEND_URL, process.env.PRODUCTION_URL];
 
 await fastify.register(cors, {
   origin: (origin, cb) => {
