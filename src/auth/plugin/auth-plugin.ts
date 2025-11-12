@@ -41,6 +41,10 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   // TODO: /refresh-token
   // TODO: /forgot-password
   // TODO: /reset-password
+  // TODO: /verify-email
+  // TODO: /resend-verification
+
+  // TODO: social media login
 
   // add decorator to verify and get current user (example)
   fastify.decorate("authenticate", async (request, reply) => {
