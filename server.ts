@@ -4,6 +4,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import dotenv from "dotenv";
 import { z } from "zod";
 import authPlugin from "./src/auth/plugin/auth-plugin.js";
+import cors from "@fastify/cors";
 
 dotenv.config();
 
@@ -20,16 +21,31 @@ fastify.register(authPlugin as any, {
     name: z.string().optional(),
   }),
 });
-//TODO: handle cors
+
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.FRONTEND_LOCAL_URL,
+];
+
+await fastify.register(cors, {
+  origin: (origin, cb) => {
+    // Allow no-origin requests (like Postman or server-to-server)
+    if (!origin) return cb(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Not allowed by CORS"), false);
+    }
+  },
+  credentials: true, // true if you use cookies
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+});
 
 fastify.get("/", async (request, reply) => {
   return { hello: "world" };
 });
-
-// export default async function handler(req: any, res: any) {
-//   await fastify.ready();
-//   fastify.server.emit("request", req, res);
-// }
 
 const port = Number(process.env.PORT ?? 3002);
 
