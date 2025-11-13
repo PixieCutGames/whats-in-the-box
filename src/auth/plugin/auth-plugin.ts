@@ -7,11 +7,14 @@ import changePasswordRoute from "../routes/change-password.js";
 import updateUserRoute from "../routes/update-user.js";
 import fastifyJwt from "@fastify/jwt";
 import { ZodObject } from "zod";
+import resendVerificationRoute from "../routes/resend-verification.js";
+import verifyEmailRoute from "../routes/verify-email.js";
 
 interface AuthOptions {
   prisma: any; // PrismaClient type in consuming app
   jwtSecret: string;
   userSchema?: ZodObject;
+  requireValidation?: boolean;
 }
 
 const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
@@ -30,6 +33,10 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
     fastify.decorate("userSchema", opts.userSchema);
   }
 
+  if (opts.requireValidation) {
+    fastify.decorate("requireValidation", opts.requireValidation);
+  }
+
   // CORS or other plugin can be enabled by the app
 
   // register routes
@@ -38,11 +45,11 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   fastify.register(meRoute, { prefix: "/auth" });
   fastify.register(changePasswordRoute, { prefix: "/auth" });
   fastify.register(updateUserRoute, { prefix: "/auth" });
+  fastify.register(resendVerificationRoute, { prefix: "/auth" });
+  fastify.register(verifyEmailRoute, { prefix: "/auth" });
   // TODO: /refresh-token
   // TODO: /forgot-password
   // TODO: /reset-password
-  // TODO: /verify-email
-  // TODO: /resend-verification
 
   // TODO: social media login
 

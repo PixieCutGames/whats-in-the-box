@@ -11,6 +11,8 @@ const meRoute: FastifyPluginAsync = async (fastify, opts) => {
           where: { id: userId },
           omit: {
             password: true,
+            verificationToken: true,
+            verificationExpiresAt: true,
           },
         });
 
