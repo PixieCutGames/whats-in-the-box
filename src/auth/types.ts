@@ -12,6 +12,7 @@ declare module "fastify" {
   interface FastifyInstance {
     prisma: PrismaClient;
     userSchema?: ZodObject;
+    requireValidation?: boolean;
     authenticate: (req: any, reply: any) => Promise<void>;
   }
 }

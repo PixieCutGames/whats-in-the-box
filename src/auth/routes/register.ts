@@ -1,6 +1,7 @@
 import { FastifyPluginAsync } from "fastify";
 import { z } from "zod";
 import { hashPassword } from "../utils/password.js";
+import * as crypto from "crypto";
 
 const schema = z.object({
   email: z.email(),
@@ -8,7 +9,7 @@ const schema = z.object({
   name: z.string().optional(),
 });
 
-const registerRoute: FastifyPluginAsync = async (fastify, opts) => {
+const registerRoute: FastifyPluginAsync = async (fastify) => {
   fastify.post(
     "/register",
     {
@@ -29,6 +30,14 @@ const registerRoute: FastifyPluginAsync = async (fastify, opts) => {
         return reply.status(409).send({ message: "Email already in use" });
       }
 
+      let token: string | undefined;
+      let date: Date | undefined;
+      if (fastify.requireValidation) {
+        token = crypto.randomBytes(32).toString("hex");
+        date = new Date();
+        date.setDate(date.getDate() + 1);
+      }
+
       const hashed = await hashPassword(parsed.password);
 
       const user = await fastify.prisma.user.create({
@@ -36,23 +45,22 @@ const registerRoute: FastifyPluginAsync = async (fastify, opts) => {
           email: parsed.email,
           password: hashed,
           name: parsed.name,
+          isVerified: !fastify.requireValidation,
+          verificationToken: token,
+          verificationExpiresAt: date,
         },
       });
 
-      // sign tokens (short example)
-      const accessToken = fastify.jwt.sign(
-        { sub: user.id },
-        { expiresIn: "15m" }
-      );
-      const refreshToken = fastify.jwt.sign(
-        { sub: user.id },
-        { expiresIn: "30d" }
-      );
+      let verificationLink: string | undefined;
+      if (fastify.requireValidation) {
+        verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
+        // TODO:  send email using resend.com
+      }
 
       reply.send({
-        accessToken,
-        refreshToken,
         user: { id: user.id, email: user.email, name: user.name },
+        verificationToken: token,
+        verificationLink,
       });
     }
   );

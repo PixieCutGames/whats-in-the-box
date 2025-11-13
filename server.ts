@@ -20,12 +20,10 @@ fastify.register(authPlugin as any, {
     password: z.string().min(8),
     name: z.string().optional(),
   }),
+  requireValidation: true,
 });
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  process.env.FRONTEND_LOCAL_URL,
-];
+const allowedOrigins = [process.env.FRONTEND_URL];
 
 await fastify.register(cors, {
   origin: (origin, cb) => {
