@@ -11,6 +11,7 @@ import resendVerificationRoute from "../routes/resend-verification.js";
 import verifyEmailRoute from "../routes/verify-email.js";
 import forgotPasswordRoute from "../routes/forgot-password.js";
 import resetPasswordRoute from "../routes/reset-password.js";
+import refreshTokenRoute from "../routes/refresh-token.js";
 
 interface AuthOptions {
   prisma: any; // PrismaClient type in consuming app
@@ -51,7 +52,7 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   fastify.register(verifyEmailRoute, { prefix: "/auth" });
   fastify.register(forgotPasswordRoute, { prefix: "/auth" });
   fastify.register(resetPasswordRoute, { prefix: "/auth" });
-  // TODO: /refresh-token
+  fastify.register(refreshTokenRoute, { prefix: "/auth" });
 
   // TODO: social media login
 
