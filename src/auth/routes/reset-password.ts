@@ -2,6 +2,7 @@ import { FastifyPluginAsync } from "fastify";
 import { z } from "zod";
 import crypto from "crypto";
 import { hash } from "argon2";
+import { hashPassword } from "../utils/password.js";
 
 const resetPasswordSchema = z.object({
   token: z.string().min(10),
@@ -25,7 +26,7 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
       const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
 
       // 2. Find token record
-      const tokenRecord = await fastify.prisma.passwordResetToken.findUnique({
+      const tokenRecord = await fastify.prisma.passwordResetToken.findFirst({
         where: {
           tokenHash,
         },
@@ -40,7 +41,7 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
         // Delete expired token
         await fastify.prisma.passwordResetToken.delete({
           where: {
-            tokenHash,
+            id: tokenRecord.id,
           },
         });
 
@@ -48,7 +49,7 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
       }
 
       // 4. Update user password
-      const hashedPassword = await hash(newPassword);
+      const hashedPassword = await hashPassword(newPassword);
 
       await fastify.prisma.user.update({
         where: { id: tokenRecord.userId },
@@ -57,7 +58,7 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
 
       // 5. Delete token after use
       await fastify.prisma.passwordResetToken.delete({
-        where: { tokenHash },
+        where: { id: tokenRecord.id },
       });
 
       return reply.send({
