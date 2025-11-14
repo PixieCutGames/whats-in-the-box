@@ -9,6 +9,8 @@ import fastifyJwt from "@fastify/jwt";
 import { ZodObject } from "zod";
 import resendVerificationRoute from "../routes/resend-verification.js";
 import verifyEmailRoute from "../routes/verify-email.js";
+import forgotPasswordRoute from "../routes/forgot-password.js";
+import resetPasswordRoute from "../routes/reset-password.js";
 
 interface AuthOptions {
   prisma: any; // PrismaClient type in consuming app
@@ -47,9 +49,9 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   fastify.register(updateUserRoute, { prefix: "/auth" });
   fastify.register(resendVerificationRoute, { prefix: "/auth" });
   fastify.register(verifyEmailRoute, { prefix: "/auth" });
+  fastify.register(forgotPasswordRoute, { prefix: "/auth" });
+  fastify.register(resetPasswordRoute, { prefix: "/auth" });
   // TODO: /refresh-token
-  // TODO: /forgot-password
-  // TODO: /reset-password
 
   // TODO: social media login
 
