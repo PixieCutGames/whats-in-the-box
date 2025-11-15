@@ -1199,11 +1199,11 @@ export namespace Prisma {
    */
 
   export type ContainerCountOutputType = {
-    Item: number
+    items: number
   }
 
   export type ContainerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Item?: boolean | ContainerCountOutputTypeCountItemArgs
+    items?: boolean | ContainerCountOutputTypeCountItemsArgs
   }
 
   // Custom InputTypes
@@ -1220,7 +1220,7 @@ export namespace Prisma {
   /**
    * ContainerCountOutputType without action
    */
-  export type ContainerCountOutputTypeCountItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContainerCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ItemWhereInput
   }
 
@@ -3662,7 +3662,7 @@ export namespace Prisma {
     updatedAt?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Item?: boolean | Container$ItemArgs<ExtArgs>
+    items?: boolean | Container$itemsArgs<ExtArgs>
     _count?: boolean | ContainerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["container"]>
 
@@ -3707,7 +3707,7 @@ export namespace Prisma {
   export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "userId" | "name" | "description" | "location" | "imageUrl" | "updatedAt" | "createdAt", ExtArgs["result"]["container"]>
   export type ContainerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Item?: boolean | Container$ItemArgs<ExtArgs>
+    items?: boolean | Container$itemsArgs<ExtArgs>
     _count?: boolean | ContainerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ContainerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3721,7 +3721,7 @@ export namespace Prisma {
     name: "Container"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      Item: Prisma.$ItemPayload<ExtArgs>[]
+      items: Prisma.$ItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4128,7 +4128,7 @@ export namespace Prisma {
   export interface Prisma__ContainerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Item<T extends Container$ItemArgs<ExtArgs> = {}>(args?: Subset<T, Container$ItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    items<T extends Container$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Container$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4563,9 +4563,9 @@ export namespace Prisma {
   }
 
   /**
-   * Container.Item
+   * Container.items
    */
-  export type Container$ItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Container$itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Item
      */
@@ -6115,7 +6115,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Item?: ItemListRelationFilter
+    items?: ItemListRelationFilter
   }
 
   export type ContainerOrderByWithRelationInput = {
@@ -6129,7 +6129,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    Item?: ItemOrderByRelationAggregateInput
+    items?: ItemOrderByRelationAggregateInput
   }
 
   export type ContainerWhereUniqueInput = Prisma.AtLeast<{
@@ -6146,7 +6146,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Item?: ItemListRelationFilter
+    items?: ItemListRelationFilter
   }, "id">
 
   export type ContainerOrderByWithAggregationInput = {
@@ -6425,7 +6425,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutContainerInput
-    Item?: ItemCreateNestedManyWithoutContainerInput
+    items?: ItemCreateNestedManyWithoutContainerInput
   }
 
   export type ContainerUncheckedCreateInput = {
@@ -6438,7 +6438,7 @@ export namespace Prisma {
     imageUrl?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
-    Item?: ItemUncheckedCreateNestedManyWithoutContainerInput
+    items?: ItemUncheckedCreateNestedManyWithoutContainerInput
   }
 
   export type ContainerUpdateInput = {
@@ -6451,7 +6451,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutContainerNestedInput
-    Item?: ItemUpdateManyWithoutContainerNestedInput
+    items?: ItemUpdateManyWithoutContainerNestedInput
   }
 
   export type ContainerUncheckedUpdateInput = {
@@ -6464,7 +6464,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Item?: ItemUncheckedUpdateManyWithoutContainerNestedInput
+    items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
   }
 
   export type ContainerCreateManyInput = {
@@ -6511,7 +6511,7 @@ export namespace Prisma {
     quantity?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    container?: ContainerCreateNestedOneWithoutItemInput
+    container?: ContainerCreateNestedOneWithoutItemsInput
     user: UserCreateNestedOneWithoutItemInput
   }
 
@@ -6537,7 +6537,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    container?: ContainerUpdateOneWithoutItemNestedInput
+    container?: ContainerUpdateOneWithoutItemsNestedInput
     user?: UserUpdateOneRequiredWithoutItemNestedInput
   }
 
@@ -7182,9 +7182,9 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type ContainerCreateNestedOneWithoutItemInput = {
-    create?: XOR<ContainerCreateWithoutItemInput, ContainerUncheckedCreateWithoutItemInput>
-    connectOrCreate?: ContainerCreateOrConnectWithoutItemInput
+  export type ContainerCreateNestedOneWithoutItemsInput = {
+    create?: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: ContainerCreateOrConnectWithoutItemsInput
     connect?: ContainerWhereUniqueInput
   }
 
@@ -7207,14 +7207,14 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type ContainerUpdateOneWithoutItemNestedInput = {
-    create?: XOR<ContainerCreateWithoutItemInput, ContainerUncheckedCreateWithoutItemInput>
-    connectOrCreate?: ContainerCreateOrConnectWithoutItemInput
-    upsert?: ContainerUpsertWithoutItemInput
+  export type ContainerUpdateOneWithoutItemsNestedInput = {
+    create?: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: ContainerCreateOrConnectWithoutItemsInput
+    upsert?: ContainerUpsertWithoutItemsInput
     disconnect?: ContainerWhereInput | boolean
     delete?: ContainerWhereInput | boolean
     connect?: ContainerWhereUniqueInput
-    update?: XOR<XOR<ContainerUpdateToOneWithWhereWithoutItemInput, ContainerUpdateWithoutItemInput>, ContainerUncheckedUpdateWithoutItemInput>
+    update?: XOR<XOR<ContainerUpdateToOneWithWhereWithoutItemsInput, ContainerUpdateWithoutItemsInput>, ContainerUncheckedUpdateWithoutItemsInput>
   }
 
   export type UserUpdateOneRequiredWithoutItemNestedInput = {
@@ -7449,7 +7449,7 @@ export namespace Prisma {
     imageUrl?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
-    Item?: ItemCreateNestedManyWithoutContainerInput
+    items?: ItemCreateNestedManyWithoutContainerInput
   }
 
   export type ContainerUncheckedCreateWithoutUserInput = {
@@ -7461,7 +7461,7 @@ export namespace Prisma {
     imageUrl?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
-    Item?: ItemUncheckedCreateNestedManyWithoutContainerInput
+    items?: ItemUncheckedCreateNestedManyWithoutContainerInput
   }
 
   export type ContainerCreateOrConnectWithoutUserInput = {
@@ -7483,7 +7483,7 @@ export namespace Prisma {
     quantity?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    container?: ContainerCreateNestedOneWithoutItemInput
+    container?: ContainerCreateNestedOneWithoutItemsInput
   }
 
   export type ItemUncheckedCreateWithoutUserInput = {
@@ -7792,7 +7792,7 @@ export namespace Prisma {
     data: XOR<ItemUpdateManyMutationInput, ItemUncheckedUpdateManyWithoutContainerInput>
   }
 
-  export type ContainerCreateWithoutItemInput = {
+  export type ContainerCreateWithoutItemsInput = {
     id?: string
     type?: $Enums.ContainerType
     name: string
@@ -7804,7 +7804,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutContainerInput
   }
 
-  export type ContainerUncheckedCreateWithoutItemInput = {
+  export type ContainerUncheckedCreateWithoutItemsInput = {
     id?: string
     type?: $Enums.ContainerType
     userId: string
@@ -7816,9 +7816,9 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type ContainerCreateOrConnectWithoutItemInput = {
+  export type ContainerCreateOrConnectWithoutItemsInput = {
     where: ContainerWhereUniqueInput
-    create: XOR<ContainerCreateWithoutItemInput, ContainerUncheckedCreateWithoutItemInput>
+    create: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
   }
 
   export type UserCreateWithoutItemInput = {
@@ -7854,18 +7854,18 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutItemInput, UserUncheckedCreateWithoutItemInput>
   }
 
-  export type ContainerUpsertWithoutItemInput = {
-    update: XOR<ContainerUpdateWithoutItemInput, ContainerUncheckedUpdateWithoutItemInput>
-    create: XOR<ContainerCreateWithoutItemInput, ContainerUncheckedCreateWithoutItemInput>
+  export type ContainerUpsertWithoutItemsInput = {
+    update: XOR<ContainerUpdateWithoutItemsInput, ContainerUncheckedUpdateWithoutItemsInput>
+    create: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
     where?: ContainerWhereInput
   }
 
-  export type ContainerUpdateToOneWithWhereWithoutItemInput = {
+  export type ContainerUpdateToOneWithWhereWithoutItemsInput = {
     where?: ContainerWhereInput
-    data: XOR<ContainerUpdateWithoutItemInput, ContainerUncheckedUpdateWithoutItemInput>
+    data: XOR<ContainerUpdateWithoutItemsInput, ContainerUncheckedUpdateWithoutItemsInput>
   }
 
-  export type ContainerUpdateWithoutItemInput = {
+  export type ContainerUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
     name?: StringFieldUpdateOperationsInput | string
@@ -7877,7 +7877,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutContainerNestedInput
   }
 
-  export type ContainerUncheckedUpdateWithoutItemInput = {
+  export type ContainerUncheckedUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
     userId?: StringFieldUpdateOperationsInput | string
@@ -7988,7 +7988,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Item?: ItemUpdateManyWithoutContainerNestedInput
+    items?: ItemUpdateManyWithoutContainerNestedInput
   }
 
   export type ContainerUncheckedUpdateWithoutUserInput = {
@@ -8000,7 +8000,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Item?: ItemUncheckedUpdateManyWithoutContainerNestedInput
+    items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
   }
 
   export type ContainerUncheckedUpdateManyWithoutUserInput = {
@@ -8023,7 +8023,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    container?: ContainerUpdateOneWithoutItemNestedInput
+    container?: ContainerUpdateOneWithoutItemsNestedInput
   }
 
   export type ItemUncheckedUpdateWithoutUserInput = {

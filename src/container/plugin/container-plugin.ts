@@ -2,7 +2,7 @@ import fp from "fastify-plugin";
 import { FastifyInstance } from "fastify";
 import getByIdRoute from "../routes/getById.js";
 import createRoute from "../routes/create.js";
-import getAllRoute from "../routes/gatAll.js";
+import getAllRoute from "../routes/getAll.js";
 import updateRoute from "../routes/update.js";
 
 const containerPlugin = fp(async (fastify: FastifyInstance) => {

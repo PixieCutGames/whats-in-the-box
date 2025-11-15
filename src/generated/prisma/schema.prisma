@@ -43,7 +43,7 @@ model Container {
   imageUrl    String? // optional preview image
   updatedAt   DateTime      @updatedAt
   createdAt   DateTime      @default(now())
-  Item        Item[]
+  items       Item[]
 }
 
 model Item {
