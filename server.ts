@@ -4,6 +4,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import dotenv from "dotenv";
 import { z } from "zod";
 import authPlugin from "./src/auth/plugin/auth-plugin.js";
+import containerPlugin from "./src/container/plugin/container-plugin.js";
 import cors from "@fastify/cors";
 
 dotenv.config();
@@ -22,6 +23,8 @@ fastify.register(authPlugin as any, {
   }),
   requireValidation: true,
 });
+
+fastify.register(containerPlugin as any);
 
 const allowedOrigins = [process.env.FRONTEND_URL];
 
