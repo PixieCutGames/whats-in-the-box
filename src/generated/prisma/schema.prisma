@@ -19,6 +19,8 @@ model User {
   verificationToken     String?              @unique
   verificationExpiresAt DateTime?
   PasswordResetToken    PasswordResetToken[]
+  Container             Container[]
+  Item                  Item[]
 }
 
 model PasswordResetToken {
@@ -28,4 +30,40 @@ model PasswordResetToken {
   user      User     @relation(fields: [userId], references: [id])
   expiresAt DateTime
   createdAt DateTime @default(now())
+}
+
+model Container {
+  id          String        @id @default(cuid())
+  type        ContainerType @default(BOX)
+  userId      String
+  user        User          @relation(fields: [userId], references: [id])
+  name        String
+  description String?
+  location    String? // e.g., Room / Shelf / Storage area
+  imageUrl    String? // optional preview image
+  updatedAt   DateTime      @updatedAt
+  createdAt   DateTime      @default(now())
+  items       Item[]
+}
+
+model Item {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  tags        String[] @default([]) // simple tags array for now
+  imageUrl    String?
+  quantity    Int      @default(1)
+
+  containerId String?
+  container   Container? @relation(fields: [containerId], references: [id], onDelete: SetNull)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ContainerType {
+  BOX
 }

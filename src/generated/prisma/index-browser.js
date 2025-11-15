@@ -141,6 +141,31 @@ exports.Prisma.PasswordResetTokenScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ContainerScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  userId: 'userId',
+  name: 'name',
+  description: 'description',
+  location: 'location',
+  imageUrl: 'imageUrl',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ItemScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  tags: 'tags',
+  imageUrl: 'imageUrl',
+  quantity: 'quantity',
+  containerId: 'containerId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -155,11 +180,15 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.ContainerType = exports.$Enums.ContainerType = {
+  BOX: 'BOX'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
-  PasswordResetToken: 'PasswordResetToken'
+  PasswordResetToken: 'PasswordResetToken',
+  Container: 'Container',
+  Item: 'Item'
 };
 
 /**

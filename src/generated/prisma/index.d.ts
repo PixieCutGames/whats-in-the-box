@@ -23,6 +23,32 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type PasswordResetToken = $Result.DefaultSelection<Prisma.$PasswordResetTokenPayload>
+/**
+ * Model Container
+ * 
+ */
+export type Container = $Result.DefaultSelection<Prisma.$ContainerPayload>
+/**
+ * Model Item
+ * 
+ */
+export type Item = $Result.DefaultSelection<Prisma.$ItemPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const ContainerType: {
+  BOX: 'BOX'
+};
+
+export type ContainerType = (typeof ContainerType)[keyof typeof ContainerType]
+
+}
+
+export type ContainerType = $Enums.ContainerType
+
+export const ContainerType: typeof $Enums.ContainerType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -161,6 +187,26 @@ export class PrismaClient<
     * ```
     */
   get passwordResetToken(): Prisma.PasswordResetTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.container`: Exposes CRUD operations for the **Container** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Containers
+    * const containers = await prisma.container.findMany()
+    * ```
+    */
+  get container(): Prisma.ContainerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.item`: Exposes CRUD operations for the **Item** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Items
+    * const items = await prisma.item.findMany()
+    * ```
+    */
+  get item(): Prisma.ItemDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -603,7 +649,9 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    PasswordResetToken: 'PasswordResetToken'
+    PasswordResetToken: 'PasswordResetToken',
+    Container: 'Container',
+    Item: 'Item'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -622,7 +670,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "passwordResetToken"
+      modelProps: "user" | "passwordResetToken" | "container" | "item"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -774,6 +822,154 @@ export namespace Prisma {
           }
         }
       }
+      Container: {
+        payload: Prisma.$ContainerPayload<ExtArgs>
+        fields: Prisma.ContainerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContainerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContainerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>
+          }
+          findFirst: {
+            args: Prisma.ContainerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContainerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>
+          }
+          findMany: {
+            args: Prisma.ContainerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>[]
+          }
+          create: {
+            args: Prisma.ContainerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>
+          }
+          createMany: {
+            args: Prisma.ContainerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContainerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>[]
+          }
+          delete: {
+            args: Prisma.ContainerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>
+          }
+          update: {
+            args: Prisma.ContainerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContainerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContainerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContainerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContainerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContainerPayload>
+          }
+          aggregate: {
+            args: Prisma.ContainerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContainer>
+          }
+          groupBy: {
+            args: Prisma.ContainerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContainerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContainerCountArgs<ExtArgs>
+            result: $Utils.Optional<ContainerCountAggregateOutputType> | number
+          }
+        }
+      }
+      Item: {
+        payload: Prisma.$ItemPayload<ExtArgs>
+        fields: Prisma.ItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>
+          }
+          findFirst: {
+            args: Prisma.ItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>
+          }
+          findMany: {
+            args: Prisma.ItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>[]
+          }
+          create: {
+            args: Prisma.ItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>
+          }
+          createMany: {
+            args: Prisma.ItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>[]
+          }
+          delete: {
+            args: Prisma.ItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>
+          }
+          update: {
+            args: Prisma.ItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.ItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.ItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemPayload>
+          }
+          aggregate: {
+            args: Prisma.ItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateItem>
+          }
+          groupBy: {
+            args: Prisma.ItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ItemCountArgs<ExtArgs>
+            result: $Utils.Optional<ItemCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -872,6 +1068,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     passwordResetToken?: PasswordResetTokenOmit
+    container?: ContainerOmit
+    item?: ItemOmit
   }
 
   /* Types for Logging */
@@ -953,10 +1151,14 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     PasswordResetToken: number
+    Container: number
+    Item: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PasswordResetToken?: boolean | UserCountOutputTypeCountPasswordResetTokenArgs
+    Container?: boolean | UserCountOutputTypeCountContainerArgs
+    Item?: boolean | UserCountOutputTypeCountItemArgs
   }
 
   // Custom InputTypes
@@ -975,6 +1177,51 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPasswordResetTokenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PasswordResetTokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountContainerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContainerWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItemWhereInput
+  }
+
+
+  /**
+   * Count Type ContainerCountOutputType
+   */
+
+  export type ContainerCountOutputType = {
+    items: number
+  }
+
+  export type ContainerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    items?: boolean | ContainerCountOutputTypeCountItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ContainerCountOutputType without action
+   */
+  export type ContainerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContainerCountOutputType
+     */
+    select?: ContainerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ContainerCountOutputType without action
+   */
+  export type ContainerCountOutputTypeCountItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItemWhereInput
   }
 
 
@@ -1179,6 +1426,8 @@ export namespace Prisma {
     verificationToken?: boolean
     verificationExpiresAt?: boolean
     PasswordResetToken?: boolean | User$PasswordResetTokenArgs<ExtArgs>
+    Container?: boolean | User$ContainerArgs<ExtArgs>
+    Item?: boolean | User$ItemArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1221,6 +1470,8 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name" | "createdAt" | "updatedAt" | "isVerified" | "verificationToken" | "verificationExpiresAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PasswordResetToken?: boolean | User$PasswordResetTokenArgs<ExtArgs>
+    Container?: boolean | User$ContainerArgs<ExtArgs>
+    Item?: boolean | User$ItemArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1230,6 +1481,8 @@ export namespace Prisma {
     name: "User"
     objects: {
       PasswordResetToken: Prisma.$PasswordResetTokenPayload<ExtArgs>[]
+      Container: Prisma.$ContainerPayload<ExtArgs>[]
+      Item: Prisma.$ItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1636,6 +1889,8 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     PasswordResetToken<T extends User$PasswordResetTokenArgs<ExtArgs> = {}>(args?: Subset<T, User$PasswordResetTokenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Container<T extends User$ContainerArgs<ExtArgs> = {}>(args?: Subset<T, User$ContainerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Item<T extends User$ItemArgs<ExtArgs> = {}>(args?: Subset<T, User$ItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2083,6 +2338,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PasswordResetTokenScalarFieldEnum | PasswordResetTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.Container
+   */
+  export type User$ContainerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    where?: ContainerWhereInput
+    orderBy?: ContainerOrderByWithRelationInput | ContainerOrderByWithRelationInput[]
+    cursor?: ContainerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContainerScalarFieldEnum | ContainerScalarFieldEnum[]
+  }
+
+  /**
+   * User.Item
+   */
+  export type User$ItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    where?: ItemWhereInput
+    orderBy?: ItemOrderByWithRelationInput | ItemOrderByWithRelationInput[]
+    cursor?: ItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ItemScalarFieldEnum | ItemScalarFieldEnum[]
   }
 
   /**
@@ -3163,6 +3466,2326 @@ export namespace Prisma {
 
 
   /**
+   * Model Container
+   */
+
+  export type AggregateContainer = {
+    _count: ContainerCountAggregateOutputType | null
+    _min: ContainerMinAggregateOutputType | null
+    _max: ContainerMaxAggregateOutputType | null
+  }
+
+  export type ContainerMinAggregateOutputType = {
+    id: string | null
+    type: $Enums.ContainerType | null
+    userId: string | null
+    name: string | null
+    description: string | null
+    location: string | null
+    imageUrl: string | null
+    updatedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type ContainerMaxAggregateOutputType = {
+    id: string | null
+    type: $Enums.ContainerType | null
+    userId: string | null
+    name: string | null
+    description: string | null
+    location: string | null
+    imageUrl: string | null
+    updatedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type ContainerCountAggregateOutputType = {
+    id: number
+    type: number
+    userId: number
+    name: number
+    description: number
+    location: number
+    imageUrl: number
+    updatedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ContainerMinAggregateInputType = {
+    id?: true
+    type?: true
+    userId?: true
+    name?: true
+    description?: true
+    location?: true
+    imageUrl?: true
+    updatedAt?: true
+    createdAt?: true
+  }
+
+  export type ContainerMaxAggregateInputType = {
+    id?: true
+    type?: true
+    userId?: true
+    name?: true
+    description?: true
+    location?: true
+    imageUrl?: true
+    updatedAt?: true
+    createdAt?: true
+  }
+
+  export type ContainerCountAggregateInputType = {
+    id?: true
+    type?: true
+    userId?: true
+    name?: true
+    description?: true
+    location?: true
+    imageUrl?: true
+    updatedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ContainerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Container to aggregate.
+     */
+    where?: ContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Containers to fetch.
+     */
+    orderBy?: ContainerOrderByWithRelationInput | ContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Containers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Containers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Containers
+    **/
+    _count?: true | ContainerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContainerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContainerMaxAggregateInputType
+  }
+
+  export type GetContainerAggregateType<T extends ContainerAggregateArgs> = {
+        [P in keyof T & keyof AggregateContainer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContainer[P]>
+      : GetScalarType<T[P], AggregateContainer[P]>
+  }
+
+
+
+
+  export type ContainerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContainerWhereInput
+    orderBy?: ContainerOrderByWithAggregationInput | ContainerOrderByWithAggregationInput[]
+    by: ContainerScalarFieldEnum[] | ContainerScalarFieldEnum
+    having?: ContainerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContainerCountAggregateInputType | true
+    _min?: ContainerMinAggregateInputType
+    _max?: ContainerMaxAggregateInputType
+  }
+
+  export type ContainerGroupByOutputType = {
+    id: string
+    type: $Enums.ContainerType
+    userId: string
+    name: string
+    description: string | null
+    location: string | null
+    imageUrl: string | null
+    updatedAt: Date
+    createdAt: Date
+    _count: ContainerCountAggregateOutputType | null
+    _min: ContainerMinAggregateOutputType | null
+    _max: ContainerMaxAggregateOutputType | null
+  }
+
+  type GetContainerGroupByPayload<T extends ContainerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContainerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContainerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContainerGroupByOutputType[P]>
+            : GetScalarType<T[P], ContainerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContainerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    userId?: boolean
+    name?: boolean
+    description?: boolean
+    location?: boolean
+    imageUrl?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    items?: boolean | Container$itemsArgs<ExtArgs>
+    _count?: boolean | ContainerCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["container"]>
+
+  export type ContainerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    userId?: boolean
+    name?: boolean
+    description?: boolean
+    location?: boolean
+    imageUrl?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["container"]>
+
+  export type ContainerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    userId?: boolean
+    name?: boolean
+    description?: boolean
+    location?: boolean
+    imageUrl?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["container"]>
+
+  export type ContainerSelectScalar = {
+    id?: boolean
+    type?: boolean
+    userId?: boolean
+    name?: boolean
+    description?: boolean
+    location?: boolean
+    imageUrl?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "userId" | "name" | "description" | "location" | "imageUrl" | "updatedAt" | "createdAt", ExtArgs["result"]["container"]>
+  export type ContainerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    items?: boolean | Container$itemsArgs<ExtArgs>
+    _count?: boolean | ContainerCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ContainerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ContainerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ContainerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Container"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      items: Prisma.$ItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      type: $Enums.ContainerType
+      userId: string
+      name: string
+      description: string | null
+      location: string | null
+      imageUrl: string | null
+      updatedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["container"]>
+    composites: {}
+  }
+
+  type ContainerGetPayload<S extends boolean | null | undefined | ContainerDefaultArgs> = $Result.GetResult<Prisma.$ContainerPayload, S>
+
+  type ContainerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContainerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContainerCountAggregateInputType | true
+    }
+
+  export interface ContainerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Container'], meta: { name: 'Container' } }
+    /**
+     * Find zero or one Container that matches the filter.
+     * @param {ContainerFindUniqueArgs} args - Arguments to find a Container
+     * @example
+     * // Get one Container
+     * const container = await prisma.container.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContainerFindUniqueArgs>(args: SelectSubset<T, ContainerFindUniqueArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Container that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContainerFindUniqueOrThrowArgs} args - Arguments to find a Container
+     * @example
+     * // Get one Container
+     * const container = await prisma.container.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContainerFindUniqueOrThrowArgs>(args: SelectSubset<T, ContainerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Container that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContainerFindFirstArgs} args - Arguments to find a Container
+     * @example
+     * // Get one Container
+     * const container = await prisma.container.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContainerFindFirstArgs>(args?: SelectSubset<T, ContainerFindFirstArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Container that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContainerFindFirstOrThrowArgs} args - Arguments to find a Container
+     * @example
+     * // Get one Container
+     * const container = await prisma.container.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContainerFindFirstOrThrowArgs>(args?: SelectSubset<T, ContainerFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Containers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContainerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Containers
+     * const containers = await prisma.container.findMany()
+     * 
+     * // Get first 10 Containers
+     * const containers = await prisma.container.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const containerWithIdOnly = await prisma.container.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContainerFindManyArgs>(args?: SelectSubset<T, ContainerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Container.
+     * @param {ContainerCreateArgs} args - Arguments to create a Container.
+     * @example
+     * // Create one Container
+     * const Container = await prisma.container.create({
+     *   data: {
+     *     // ... data to create a Container
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContainerCreateArgs>(args: SelectSubset<T, ContainerCreateArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Containers.
+     * @param {ContainerCreateManyArgs} args - Arguments to create many Containers.
+     * @example
+     * // Create many Containers
+     * const container = await prisma.container.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContainerCreateManyArgs>(args?: SelectSubset<T, ContainerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Containers and returns the data saved in the database.
+     * @param {ContainerCreateManyAndReturnArgs} args - Arguments to create many Containers.
+     * @example
+     * // Create many Containers
+     * const container = await prisma.container.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Containers and only return the `id`
+     * const containerWithIdOnly = await prisma.container.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContainerCreateManyAndReturnArgs>(args?: SelectSubset<T, ContainerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Container.
+     * @param {ContainerDeleteArgs} args - Arguments to delete one Container.
+     * @example
+     * // Delete one Container
+     * const Container = await prisma.container.delete({
+     *   where: {
+     *     // ... filter to delete one Container
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContainerDeleteArgs>(args: SelectSubset<T, ContainerDeleteArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Container.
+     * @param {ContainerUpdateArgs} args - Arguments to update one Container.
+     * @example
+     * // Update one Container
+     * const container = await prisma.container.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContainerUpdateArgs>(args: SelectSubset<T, ContainerUpdateArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Containers.
+     * @param {ContainerDeleteManyArgs} args - Arguments to filter Containers to delete.
+     * @example
+     * // Delete a few Containers
+     * const { count } = await prisma.container.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContainerDeleteManyArgs>(args?: SelectSubset<T, ContainerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Containers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContainerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Containers
+     * const container = await prisma.container.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContainerUpdateManyArgs>(args: SelectSubset<T, ContainerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Containers and returns the data updated in the database.
+     * @param {ContainerUpdateManyAndReturnArgs} args - Arguments to update many Containers.
+     * @example
+     * // Update many Containers
+     * const container = await prisma.container.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Containers and only return the `id`
+     * const containerWithIdOnly = await prisma.container.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContainerUpdateManyAndReturnArgs>(args: SelectSubset<T, ContainerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Container.
+     * @param {ContainerUpsertArgs} args - Arguments to update or create a Container.
+     * @example
+     * // Update or create a Container
+     * const container = await prisma.container.upsert({
+     *   create: {
+     *     // ... data to create a Container
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Container we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContainerUpsertArgs>(args: SelectSubset<T, ContainerUpsertArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Containers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContainerCountArgs} args - Arguments to filter Containers to count.
+     * @example
+     * // Count the number of Containers
+     * const count = await prisma.container.count({
+     *   where: {
+     *     // ... the filter for the Containers we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContainerCountArgs>(
+      args?: Subset<T, ContainerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContainerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Container.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContainerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContainerAggregateArgs>(args: Subset<T, ContainerAggregateArgs>): Prisma.PrismaPromise<GetContainerAggregateType<T>>
+
+    /**
+     * Group by Container.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContainerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContainerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContainerGroupByArgs['orderBy'] }
+        : { orderBy?: ContainerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContainerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContainerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Container model
+   */
+  readonly fields: ContainerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Container.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContainerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    items<T extends Container$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Container$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Container model
+   */
+  interface ContainerFieldRefs {
+    readonly id: FieldRef<"Container", 'String'>
+    readonly type: FieldRef<"Container", 'ContainerType'>
+    readonly userId: FieldRef<"Container", 'String'>
+    readonly name: FieldRef<"Container", 'String'>
+    readonly description: FieldRef<"Container", 'String'>
+    readonly location: FieldRef<"Container", 'String'>
+    readonly imageUrl: FieldRef<"Container", 'String'>
+    readonly updatedAt: FieldRef<"Container", 'DateTime'>
+    readonly createdAt: FieldRef<"Container", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Container findUnique
+   */
+  export type ContainerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which Container to fetch.
+     */
+    where: ContainerWhereUniqueInput
+  }
+
+  /**
+   * Container findUniqueOrThrow
+   */
+  export type ContainerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which Container to fetch.
+     */
+    where: ContainerWhereUniqueInput
+  }
+
+  /**
+   * Container findFirst
+   */
+  export type ContainerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which Container to fetch.
+     */
+    where?: ContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Containers to fetch.
+     */
+    orderBy?: ContainerOrderByWithRelationInput | ContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Containers.
+     */
+    cursor?: ContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Containers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Containers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Containers.
+     */
+    distinct?: ContainerScalarFieldEnum | ContainerScalarFieldEnum[]
+  }
+
+  /**
+   * Container findFirstOrThrow
+   */
+  export type ContainerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which Container to fetch.
+     */
+    where?: ContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Containers to fetch.
+     */
+    orderBy?: ContainerOrderByWithRelationInput | ContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Containers.
+     */
+    cursor?: ContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Containers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Containers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Containers.
+     */
+    distinct?: ContainerScalarFieldEnum | ContainerScalarFieldEnum[]
+  }
+
+  /**
+   * Container findMany
+   */
+  export type ContainerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which Containers to fetch.
+     */
+    where?: ContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Containers to fetch.
+     */
+    orderBy?: ContainerOrderByWithRelationInput | ContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Containers.
+     */
+    cursor?: ContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Containers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Containers.
+     */
+    skip?: number
+    distinct?: ContainerScalarFieldEnum | ContainerScalarFieldEnum[]
+  }
+
+  /**
+   * Container create
+   */
+  export type ContainerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Container.
+     */
+    data: XOR<ContainerCreateInput, ContainerUncheckedCreateInput>
+  }
+
+  /**
+   * Container createMany
+   */
+  export type ContainerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Containers.
+     */
+    data: ContainerCreateManyInput | ContainerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Container createManyAndReturn
+   */
+  export type ContainerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * The data used to create many Containers.
+     */
+    data: ContainerCreateManyInput | ContainerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Container update
+   */
+  export type ContainerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Container.
+     */
+    data: XOR<ContainerUpdateInput, ContainerUncheckedUpdateInput>
+    /**
+     * Choose, which Container to update.
+     */
+    where: ContainerWhereUniqueInput
+  }
+
+  /**
+   * Container updateMany
+   */
+  export type ContainerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Containers.
+     */
+    data: XOR<ContainerUpdateManyMutationInput, ContainerUncheckedUpdateManyInput>
+    /**
+     * Filter which Containers to update
+     */
+    where?: ContainerWhereInput
+    /**
+     * Limit how many Containers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Container updateManyAndReturn
+   */
+  export type ContainerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * The data used to update Containers.
+     */
+    data: XOR<ContainerUpdateManyMutationInput, ContainerUncheckedUpdateManyInput>
+    /**
+     * Filter which Containers to update
+     */
+    where?: ContainerWhereInput
+    /**
+     * Limit how many Containers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Container upsert
+   */
+  export type ContainerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Container to update in case it exists.
+     */
+    where: ContainerWhereUniqueInput
+    /**
+     * In case the Container found by the `where` argument doesn't exist, create a new Container with this data.
+     */
+    create: XOR<ContainerCreateInput, ContainerUncheckedCreateInput>
+    /**
+     * In case the Container was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContainerUpdateInput, ContainerUncheckedUpdateInput>
+  }
+
+  /**
+   * Container delete
+   */
+  export type ContainerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    /**
+     * Filter which Container to delete.
+     */
+    where: ContainerWhereUniqueInput
+  }
+
+  /**
+   * Container deleteMany
+   */
+  export type ContainerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Containers to delete
+     */
+    where?: ContainerWhereInput
+    /**
+     * Limit how many Containers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Container.items
+   */
+  export type Container$itemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    where?: ItemWhereInput
+    orderBy?: ItemOrderByWithRelationInput | ItemOrderByWithRelationInput[]
+    cursor?: ItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ItemScalarFieldEnum | ItemScalarFieldEnum[]
+  }
+
+  /**
+   * Container without action
+   */
+  export type ContainerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Item
+   */
+
+  export type AggregateItem = {
+    _count: ItemCountAggregateOutputType | null
+    _avg: ItemAvgAggregateOutputType | null
+    _sum: ItemSumAggregateOutputType | null
+    _min: ItemMinAggregateOutputType | null
+    _max: ItemMaxAggregateOutputType | null
+  }
+
+  export type ItemAvgAggregateOutputType = {
+    quantity: number | null
+  }
+
+  export type ItemSumAggregateOutputType = {
+    quantity: number | null
+  }
+
+  export type ItemMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    imageUrl: string | null
+    quantity: number | null
+    containerId: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ItemMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    imageUrl: string | null
+    quantity: number | null
+    containerId: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ItemCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    tags: number
+    imageUrl: number
+    quantity: number
+    containerId: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ItemAvgAggregateInputType = {
+    quantity?: true
+  }
+
+  export type ItemSumAggregateInputType = {
+    quantity?: true
+  }
+
+  export type ItemMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    quantity?: true
+    containerId?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ItemMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    quantity?: true
+    containerId?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ItemCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    tags?: true
+    imageUrl?: true
+    quantity?: true
+    containerId?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Item to aggregate.
+     */
+    where?: ItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Items to fetch.
+     */
+    orderBy?: ItemOrderByWithRelationInput | ItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Items from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Items.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Items
+    **/
+    _count?: true | ItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ItemMaxAggregateInputType
+  }
+
+  export type GetItemAggregateType<T extends ItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateItem[P]>
+      : GetScalarType<T[P], AggregateItem[P]>
+  }
+
+
+
+
+  export type ItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItemWhereInput
+    orderBy?: ItemOrderByWithAggregationInput | ItemOrderByWithAggregationInput[]
+    by: ItemScalarFieldEnum[] | ItemScalarFieldEnum
+    having?: ItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ItemCountAggregateInputType | true
+    _avg?: ItemAvgAggregateInputType
+    _sum?: ItemSumAggregateInputType
+    _min?: ItemMinAggregateInputType
+    _max?: ItemMaxAggregateInputType
+  }
+
+  export type ItemGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    tags: string[]
+    imageUrl: string | null
+    quantity: number
+    containerId: string | null
+    userId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ItemCountAggregateOutputType | null
+    _avg: ItemAvgAggregateOutputType | null
+    _sum: ItemSumAggregateOutputType | null
+    _min: ItemMinAggregateOutputType | null
+    _max: ItemMaxAggregateOutputType | null
+  }
+
+  type GetItemGroupByPayload<T extends ItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ItemGroupByOutputType[P]>
+            : GetScalarType<T[P], ItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    tags?: boolean
+    imageUrl?: boolean
+    quantity?: boolean
+    containerId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    container?: boolean | Item$containerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["item"]>
+
+  export type ItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    tags?: boolean
+    imageUrl?: boolean
+    quantity?: boolean
+    containerId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    container?: boolean | Item$containerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["item"]>
+
+  export type ItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    tags?: boolean
+    imageUrl?: boolean
+    quantity?: boolean
+    containerId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    container?: boolean | Item$containerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["item"]>
+
+  export type ItemSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    tags?: boolean
+    imageUrl?: boolean
+    quantity?: boolean
+    containerId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "tags" | "imageUrl" | "quantity" | "containerId" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["item"]>
+  export type ItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    container?: boolean | Item$containerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    container?: boolean | Item$containerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    container?: boolean | Item$containerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Item"
+    objects: {
+      container: Prisma.$ContainerPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      tags: string[]
+      imageUrl: string | null
+      quantity: number
+      containerId: string | null
+      userId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["item"]>
+    composites: {}
+  }
+
+  type ItemGetPayload<S extends boolean | null | undefined | ItemDefaultArgs> = $Result.GetResult<Prisma.$ItemPayload, S>
+
+  type ItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ItemCountAggregateInputType | true
+    }
+
+  export interface ItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Item'], meta: { name: 'Item' } }
+    /**
+     * Find zero or one Item that matches the filter.
+     * @param {ItemFindUniqueArgs} args - Arguments to find a Item
+     * @example
+     * // Get one Item
+     * const item = await prisma.item.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ItemFindUniqueArgs>(args: SelectSubset<T, ItemFindUniqueArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Item that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ItemFindUniqueOrThrowArgs} args - Arguments to find a Item
+     * @example
+     * // Get one Item
+     * const item = await prisma.item.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ItemFindUniqueOrThrowArgs>(args: SelectSubset<T, ItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Item that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemFindFirstArgs} args - Arguments to find a Item
+     * @example
+     * // Get one Item
+     * const item = await prisma.item.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ItemFindFirstArgs>(args?: SelectSubset<T, ItemFindFirstArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Item that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemFindFirstOrThrowArgs} args - Arguments to find a Item
+     * @example
+     * // Get one Item
+     * const item = await prisma.item.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ItemFindFirstOrThrowArgs>(args?: SelectSubset<T, ItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Items that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Items
+     * const items = await prisma.item.findMany()
+     * 
+     * // Get first 10 Items
+     * const items = await prisma.item.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const itemWithIdOnly = await prisma.item.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ItemFindManyArgs>(args?: SelectSubset<T, ItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Item.
+     * @param {ItemCreateArgs} args - Arguments to create a Item.
+     * @example
+     * // Create one Item
+     * const Item = await prisma.item.create({
+     *   data: {
+     *     // ... data to create a Item
+     *   }
+     * })
+     * 
+     */
+    create<T extends ItemCreateArgs>(args: SelectSubset<T, ItemCreateArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Items.
+     * @param {ItemCreateManyArgs} args - Arguments to create many Items.
+     * @example
+     * // Create many Items
+     * const item = await prisma.item.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ItemCreateManyArgs>(args?: SelectSubset<T, ItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Items and returns the data saved in the database.
+     * @param {ItemCreateManyAndReturnArgs} args - Arguments to create many Items.
+     * @example
+     * // Create many Items
+     * const item = await prisma.item.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Items and only return the `id`
+     * const itemWithIdOnly = await prisma.item.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ItemCreateManyAndReturnArgs>(args?: SelectSubset<T, ItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Item.
+     * @param {ItemDeleteArgs} args - Arguments to delete one Item.
+     * @example
+     * // Delete one Item
+     * const Item = await prisma.item.delete({
+     *   where: {
+     *     // ... filter to delete one Item
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ItemDeleteArgs>(args: SelectSubset<T, ItemDeleteArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Item.
+     * @param {ItemUpdateArgs} args - Arguments to update one Item.
+     * @example
+     * // Update one Item
+     * const item = await prisma.item.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ItemUpdateArgs>(args: SelectSubset<T, ItemUpdateArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Items.
+     * @param {ItemDeleteManyArgs} args - Arguments to filter Items to delete.
+     * @example
+     * // Delete a few Items
+     * const { count } = await prisma.item.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ItemDeleteManyArgs>(args?: SelectSubset<T, ItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Items.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Items
+     * const item = await prisma.item.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ItemUpdateManyArgs>(args: SelectSubset<T, ItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Items and returns the data updated in the database.
+     * @param {ItemUpdateManyAndReturnArgs} args - Arguments to update many Items.
+     * @example
+     * // Update many Items
+     * const item = await prisma.item.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Items and only return the `id`
+     * const itemWithIdOnly = await prisma.item.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ItemUpdateManyAndReturnArgs>(args: SelectSubset<T, ItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Item.
+     * @param {ItemUpsertArgs} args - Arguments to update or create a Item.
+     * @example
+     * // Update or create a Item
+     * const item = await prisma.item.upsert({
+     *   create: {
+     *     // ... data to create a Item
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Item we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ItemUpsertArgs>(args: SelectSubset<T, ItemUpsertArgs<ExtArgs>>): Prisma__ItemClient<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Items.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemCountArgs} args - Arguments to filter Items to count.
+     * @example
+     * // Count the number of Items
+     * const count = await prisma.item.count({
+     *   where: {
+     *     // ... the filter for the Items we want to count
+     *   }
+     * })
+    **/
+    count<T extends ItemCountArgs>(
+      args?: Subset<T, ItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Item.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ItemAggregateArgs>(args: Subset<T, ItemAggregateArgs>): Prisma.PrismaPromise<GetItemAggregateType<T>>
+
+    /**
+     * Group by Item.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ItemGroupByArgs['orderBy'] }
+        : { orderBy?: ItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Item model
+   */
+  readonly fields: ItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Item.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    container<T extends Item$containerArgs<ExtArgs> = {}>(args?: Subset<T, Item$containerArgs<ExtArgs>>): Prisma__ContainerClient<$Result.GetResult<Prisma.$ContainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Item model
+   */
+  interface ItemFieldRefs {
+    readonly id: FieldRef<"Item", 'String'>
+    readonly name: FieldRef<"Item", 'String'>
+    readonly description: FieldRef<"Item", 'String'>
+    readonly tags: FieldRef<"Item", 'String[]'>
+    readonly imageUrl: FieldRef<"Item", 'String'>
+    readonly quantity: FieldRef<"Item", 'Int'>
+    readonly containerId: FieldRef<"Item", 'String'>
+    readonly userId: FieldRef<"Item", 'String'>
+    readonly createdAt: FieldRef<"Item", 'DateTime'>
+    readonly updatedAt: FieldRef<"Item", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Item findUnique
+   */
+  export type ItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * Filter, which Item to fetch.
+     */
+    where: ItemWhereUniqueInput
+  }
+
+  /**
+   * Item findUniqueOrThrow
+   */
+  export type ItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * Filter, which Item to fetch.
+     */
+    where: ItemWhereUniqueInput
+  }
+
+  /**
+   * Item findFirst
+   */
+  export type ItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * Filter, which Item to fetch.
+     */
+    where?: ItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Items to fetch.
+     */
+    orderBy?: ItemOrderByWithRelationInput | ItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Items.
+     */
+    cursor?: ItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Items from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Items.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Items.
+     */
+    distinct?: ItemScalarFieldEnum | ItemScalarFieldEnum[]
+  }
+
+  /**
+   * Item findFirstOrThrow
+   */
+  export type ItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * Filter, which Item to fetch.
+     */
+    where?: ItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Items to fetch.
+     */
+    orderBy?: ItemOrderByWithRelationInput | ItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Items.
+     */
+    cursor?: ItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Items from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Items.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Items.
+     */
+    distinct?: ItemScalarFieldEnum | ItemScalarFieldEnum[]
+  }
+
+  /**
+   * Item findMany
+   */
+  export type ItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * Filter, which Items to fetch.
+     */
+    where?: ItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Items to fetch.
+     */
+    orderBy?: ItemOrderByWithRelationInput | ItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Items.
+     */
+    cursor?: ItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Items from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Items.
+     */
+    skip?: number
+    distinct?: ItemScalarFieldEnum | ItemScalarFieldEnum[]
+  }
+
+  /**
+   * Item create
+   */
+  export type ItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Item.
+     */
+    data: XOR<ItemCreateInput, ItemUncheckedCreateInput>
+  }
+
+  /**
+   * Item createMany
+   */
+  export type ItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Items.
+     */
+    data: ItemCreateManyInput | ItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Item createManyAndReturn
+   */
+  export type ItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many Items.
+     */
+    data: ItemCreateManyInput | ItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Item update
+   */
+  export type ItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Item.
+     */
+    data: XOR<ItemUpdateInput, ItemUncheckedUpdateInput>
+    /**
+     * Choose, which Item to update.
+     */
+    where: ItemWhereUniqueInput
+  }
+
+  /**
+   * Item updateMany
+   */
+  export type ItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Items.
+     */
+    data: XOR<ItemUpdateManyMutationInput, ItemUncheckedUpdateManyInput>
+    /**
+     * Filter which Items to update
+     */
+    where?: ItemWhereInput
+    /**
+     * Limit how many Items to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Item updateManyAndReturn
+   */
+  export type ItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * The data used to update Items.
+     */
+    data: XOR<ItemUpdateManyMutationInput, ItemUncheckedUpdateManyInput>
+    /**
+     * Filter which Items to update
+     */
+    where?: ItemWhereInput
+    /**
+     * Limit how many Items to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Item upsert
+   */
+  export type ItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Item to update in case it exists.
+     */
+    where: ItemWhereUniqueInput
+    /**
+     * In case the Item found by the `where` argument doesn't exist, create a new Item with this data.
+     */
+    create: XOR<ItemCreateInput, ItemUncheckedCreateInput>
+    /**
+     * In case the Item was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ItemUpdateInput, ItemUncheckedUpdateInput>
+  }
+
+  /**
+   * Item delete
+   */
+  export type ItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+    /**
+     * Filter which Item to delete.
+     */
+    where: ItemWhereUniqueInput
+  }
+
+  /**
+   * Item deleteMany
+   */
+  export type ItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Items to delete
+     */
+    where?: ItemWhereInput
+    /**
+     * Limit how many Items to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Item.container
+   */
+  export type Item$containerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Container
+     */
+    select?: ContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Container
+     */
+    omit?: ContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContainerInclude<ExtArgs> | null
+    where?: ContainerWhereInput
+  }
+
+  /**
+   * Item without action
+   */
+  export type ItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Item
+     */
+    select?: ItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Item
+     */
+    omit?: ItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3200,6 +5823,37 @@ export namespace Prisma {
   };
 
   export type PasswordResetTokenScalarFieldEnum = (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum]
+
+
+  export const ContainerScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    userId: 'userId',
+    name: 'name',
+    description: 'description',
+    location: 'location',
+    imageUrl: 'imageUrl',
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type ContainerScalarFieldEnum = (typeof ContainerScalarFieldEnum)[keyof typeof ContainerScalarFieldEnum]
+
+
+  export const ItemScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    tags: 'tags',
+    imageUrl: 'imageUrl',
+    quantity: 'quantity',
+    containerId: 'containerId',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof ItemScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3267,6 +5921,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ContainerType'
+   */
+  export type EnumContainerTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContainerType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ContainerType[]'
+   */
+  export type ListEnumContainerTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContainerType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3277,6 +5945,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -3297,6 +5979,8 @@ export namespace Prisma {
     verificationToken?: StringNullableFilter<"User"> | string | null
     verificationExpiresAt?: DateTimeNullableFilter<"User"> | Date | string | null
     PasswordResetToken?: PasswordResetTokenListRelationFilter
+    Container?: ContainerListRelationFilter
+    Item?: ItemListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3310,6 +5994,8 @@ export namespace Prisma {
     verificationToken?: SortOrderInput | SortOrder
     verificationExpiresAt?: SortOrderInput | SortOrder
     PasswordResetToken?: PasswordResetTokenOrderByRelationAggregateInput
+    Container?: ContainerOrderByRelationAggregateInput
+    Item?: ItemOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3326,6 +6012,8 @@ export namespace Prisma {
     isVerified?: BoolFilter<"User"> | boolean
     verificationExpiresAt?: DateTimeNullableFilter<"User"> | Date | string | null
     PasswordResetToken?: PasswordResetTokenListRelationFilter
+    Container?: ContainerListRelationFilter
+    Item?: ItemListRelationFilter
   }, "id" | "email" | "verificationToken">
 
   export type UserOrderByWithAggregationInput = {
@@ -3413,6 +6101,169 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"PasswordResetToken"> | Date | string
   }
 
+  export type ContainerWhereInput = {
+    AND?: ContainerWhereInput | ContainerWhereInput[]
+    OR?: ContainerWhereInput[]
+    NOT?: ContainerWhereInput | ContainerWhereInput[]
+    id?: StringFilter<"Container"> | string
+    type?: EnumContainerTypeFilter<"Container"> | $Enums.ContainerType
+    userId?: StringFilter<"Container"> | string
+    name?: StringFilter<"Container"> | string
+    description?: StringNullableFilter<"Container"> | string | null
+    location?: StringNullableFilter<"Container"> | string | null
+    imageUrl?: StringNullableFilter<"Container"> | string | null
+    updatedAt?: DateTimeFilter<"Container"> | Date | string
+    createdAt?: DateTimeFilter<"Container"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    items?: ItemListRelationFilter
+  }
+
+  export type ContainerOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    items?: ItemOrderByRelationAggregateInput
+  }
+
+  export type ContainerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContainerWhereInput | ContainerWhereInput[]
+    OR?: ContainerWhereInput[]
+    NOT?: ContainerWhereInput | ContainerWhereInput[]
+    type?: EnumContainerTypeFilter<"Container"> | $Enums.ContainerType
+    userId?: StringFilter<"Container"> | string
+    name?: StringFilter<"Container"> | string
+    description?: StringNullableFilter<"Container"> | string | null
+    location?: StringNullableFilter<"Container"> | string | null
+    imageUrl?: StringNullableFilter<"Container"> | string | null
+    updatedAt?: DateTimeFilter<"Container"> | Date | string
+    createdAt?: DateTimeFilter<"Container"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    items?: ItemListRelationFilter
+  }, "id">
+
+  export type ContainerOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: ContainerCountOrderByAggregateInput
+    _max?: ContainerMaxOrderByAggregateInput
+    _min?: ContainerMinOrderByAggregateInput
+  }
+
+  export type ContainerScalarWhereWithAggregatesInput = {
+    AND?: ContainerScalarWhereWithAggregatesInput | ContainerScalarWhereWithAggregatesInput[]
+    OR?: ContainerScalarWhereWithAggregatesInput[]
+    NOT?: ContainerScalarWhereWithAggregatesInput | ContainerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Container"> | string
+    type?: EnumContainerTypeWithAggregatesFilter<"Container"> | $Enums.ContainerType
+    userId?: StringWithAggregatesFilter<"Container"> | string
+    name?: StringWithAggregatesFilter<"Container"> | string
+    description?: StringNullableWithAggregatesFilter<"Container"> | string | null
+    location?: StringNullableWithAggregatesFilter<"Container"> | string | null
+    imageUrl?: StringNullableWithAggregatesFilter<"Container"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"Container"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Container"> | Date | string
+  }
+
+  export type ItemWhereInput = {
+    AND?: ItemWhereInput | ItemWhereInput[]
+    OR?: ItemWhereInput[]
+    NOT?: ItemWhereInput | ItemWhereInput[]
+    id?: StringFilter<"Item"> | string
+    name?: StringFilter<"Item"> | string
+    description?: StringNullableFilter<"Item"> | string | null
+    tags?: StringNullableListFilter<"Item">
+    imageUrl?: StringNullableFilter<"Item"> | string | null
+    quantity?: IntFilter<"Item"> | number
+    containerId?: StringNullableFilter<"Item"> | string | null
+    userId?: StringFilter<"Item"> | string
+    createdAt?: DateTimeFilter<"Item"> | Date | string
+    updatedAt?: DateTimeFilter<"Item"> | Date | string
+    container?: XOR<ContainerNullableScalarRelationFilter, ContainerWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ItemOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    quantity?: SortOrder
+    containerId?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    container?: ContainerOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ItemWhereInput | ItemWhereInput[]
+    OR?: ItemWhereInput[]
+    NOT?: ItemWhereInput | ItemWhereInput[]
+    name?: StringFilter<"Item"> | string
+    description?: StringNullableFilter<"Item"> | string | null
+    tags?: StringNullableListFilter<"Item">
+    imageUrl?: StringNullableFilter<"Item"> | string | null
+    quantity?: IntFilter<"Item"> | number
+    containerId?: StringNullableFilter<"Item"> | string | null
+    userId?: StringFilter<"Item"> | string
+    createdAt?: DateTimeFilter<"Item"> | Date | string
+    updatedAt?: DateTimeFilter<"Item"> | Date | string
+    container?: XOR<ContainerNullableScalarRelationFilter, ContainerWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    quantity?: SortOrder
+    containerId?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ItemCountOrderByAggregateInput
+    _avg?: ItemAvgOrderByAggregateInput
+    _max?: ItemMaxOrderByAggregateInput
+    _min?: ItemMinOrderByAggregateInput
+    _sum?: ItemSumOrderByAggregateInput
+  }
+
+  export type ItemScalarWhereWithAggregatesInput = {
+    AND?: ItemScalarWhereWithAggregatesInput | ItemScalarWhereWithAggregatesInput[]
+    OR?: ItemScalarWhereWithAggregatesInput[]
+    NOT?: ItemScalarWhereWithAggregatesInput | ItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Item"> | string
+    name?: StringWithAggregatesFilter<"Item"> | string
+    description?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    tags?: StringNullableListFilter<"Item">
+    imageUrl?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    quantity?: IntWithAggregatesFilter<"Item"> | number
+    containerId?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    userId?: StringWithAggregatesFilter<"Item"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Item"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Item"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -3424,6 +6275,8 @@ export namespace Prisma {
     verificationToken?: string | null
     verificationExpiresAt?: Date | string | null
     PasswordResetToken?: PasswordResetTokenCreateNestedManyWithoutUserInput
+    Container?: ContainerCreateNestedManyWithoutUserInput
+    Item?: ItemCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3437,6 +6290,8 @@ export namespace Prisma {
     verificationToken?: string | null
     verificationExpiresAt?: Date | string | null
     PasswordResetToken?: PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+    Container?: ContainerUncheckedCreateNestedManyWithoutUserInput
+    Item?: ItemUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -3450,6 +6305,8 @@ export namespace Prisma {
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     PasswordResetToken?: PasswordResetTokenUpdateManyWithoutUserNestedInput
+    Container?: ContainerUpdateManyWithoutUserNestedInput
+    Item?: ItemUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3463,6 +6320,8 @@ export namespace Prisma {
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     PasswordResetToken?: PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    Container?: ContainerUncheckedUpdateManyWithoutUserNestedInput
+    Item?: ItemUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3556,6 +6415,182 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ContainerCreateInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutContainerInput
+    items?: ItemCreateNestedManyWithoutContainerInput
+  }
+
+  export type ContainerUncheckedCreateInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    userId: string
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    items?: ItemUncheckedCreateNestedManyWithoutContainerInput
+  }
+
+  export type ContainerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutContainerNestedInput
+    items?: ItemUpdateManyWithoutContainerNestedInput
+  }
+
+  export type ContainerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
+  }
+
+  export type ContainerCreateManyInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    userId: string
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type ContainerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContainerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    container?: ContainerCreateNestedOneWithoutItemsInput
+    user: UserCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    containerId?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    container?: ContainerUpdateOneWithoutItemsNestedInput
+    user?: UserUpdateOneRequiredWithoutItemNestedInput
+  }
+
+  export type ItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    containerId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    containerId?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    containerId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3619,12 +6654,32 @@ export namespace Prisma {
     none?: PasswordResetTokenWhereInput
   }
 
+  export type ContainerListRelationFilter = {
+    every?: ContainerWhereInput
+    some?: ContainerWhereInput
+    none?: ContainerWhereInput
+  }
+
+  export type ItemListRelationFilter = {
+    every?: ItemWhereInput
+    some?: ItemWhereInput
+    none?: ItemWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type PasswordResetTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContainerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ItemOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3765,6 +6820,144 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type EnumContainerTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerType | EnumContainerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerTypeFilter<$PrismaModel> | $Enums.ContainerType
+  }
+
+  export type ContainerCountOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    location?: SortOrder
+    imageUrl?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ContainerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    location?: SortOrder
+    imageUrl?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ContainerMinOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    location?: SortOrder
+    imageUrl?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumContainerTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerType | EnumContainerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerTypeWithAggregatesFilter<$PrismaModel> | $Enums.ContainerType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContainerTypeFilter<$PrismaModel>
+    _max?: NestedEnumContainerTypeFilter<$PrismaModel>
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ContainerNullableScalarRelationFilter = {
+    is?: ContainerWhereInput | null
+    isNot?: ContainerWhereInput | null
+  }
+
+  export type ItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    tags?: SortOrder
+    imageUrl?: SortOrder
+    quantity?: SortOrder
+    containerId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+  }
+
+  export type ItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    quantity?: SortOrder
+    containerId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    quantity?: SortOrder
+    containerId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type PasswordResetTokenCreateNestedManyWithoutUserInput = {
     create?: XOR<PasswordResetTokenCreateWithoutUserInput, PasswordResetTokenUncheckedCreateWithoutUserInput> | PasswordResetTokenCreateWithoutUserInput[] | PasswordResetTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PasswordResetTokenCreateOrConnectWithoutUserInput | PasswordResetTokenCreateOrConnectWithoutUserInput[]
@@ -3772,11 +6965,39 @@ export namespace Prisma {
     connect?: PasswordResetTokenWhereUniqueInput | PasswordResetTokenWhereUniqueInput[]
   }
 
+  export type ContainerCreateNestedManyWithoutUserInput = {
+    create?: XOR<ContainerCreateWithoutUserInput, ContainerUncheckedCreateWithoutUserInput> | ContainerCreateWithoutUserInput[] | ContainerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ContainerCreateOrConnectWithoutUserInput | ContainerCreateOrConnectWithoutUserInput[]
+    createMany?: ContainerCreateManyUserInputEnvelope
+    connect?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+  }
+
+  export type ItemCreateNestedManyWithoutUserInput = {
+    create?: XOR<ItemCreateWithoutUserInput, ItemUncheckedCreateWithoutUserInput> | ItemCreateWithoutUserInput[] | ItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutUserInput | ItemCreateOrConnectWithoutUserInput[]
+    createMany?: ItemCreateManyUserInputEnvelope
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+  }
+
   export type PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<PasswordResetTokenCreateWithoutUserInput, PasswordResetTokenUncheckedCreateWithoutUserInput> | PasswordResetTokenCreateWithoutUserInput[] | PasswordResetTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PasswordResetTokenCreateOrConnectWithoutUserInput | PasswordResetTokenCreateOrConnectWithoutUserInput[]
     createMany?: PasswordResetTokenCreateManyUserInputEnvelope
     connect?: PasswordResetTokenWhereUniqueInput | PasswordResetTokenWhereUniqueInput[]
+  }
+
+  export type ContainerUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ContainerCreateWithoutUserInput, ContainerUncheckedCreateWithoutUserInput> | ContainerCreateWithoutUserInput[] | ContainerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ContainerCreateOrConnectWithoutUserInput | ContainerCreateOrConnectWithoutUserInput[]
+    createMany?: ContainerCreateManyUserInputEnvelope
+    connect?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+  }
+
+  export type ItemUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ItemCreateWithoutUserInput, ItemUncheckedCreateWithoutUserInput> | ItemCreateWithoutUserInput[] | ItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutUserInput | ItemCreateOrConnectWithoutUserInput[]
+    createMany?: ItemCreateManyUserInputEnvelope
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3813,6 +7034,34 @@ export namespace Prisma {
     deleteMany?: PasswordResetTokenScalarWhereInput | PasswordResetTokenScalarWhereInput[]
   }
 
+  export type ContainerUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ContainerCreateWithoutUserInput, ContainerUncheckedCreateWithoutUserInput> | ContainerCreateWithoutUserInput[] | ContainerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ContainerCreateOrConnectWithoutUserInput | ContainerCreateOrConnectWithoutUserInput[]
+    upsert?: ContainerUpsertWithWhereUniqueWithoutUserInput | ContainerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ContainerCreateManyUserInputEnvelope
+    set?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    disconnect?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    delete?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    connect?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    update?: ContainerUpdateWithWhereUniqueWithoutUserInput | ContainerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ContainerUpdateManyWithWhereWithoutUserInput | ContainerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ContainerScalarWhereInput | ContainerScalarWhereInput[]
+  }
+
+  export type ItemUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ItemCreateWithoutUserInput, ItemUncheckedCreateWithoutUserInput> | ItemCreateWithoutUserInput[] | ItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutUserInput | ItemCreateOrConnectWithoutUserInput[]
+    upsert?: ItemUpsertWithWhereUniqueWithoutUserInput | ItemUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ItemCreateManyUserInputEnvelope
+    set?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    disconnect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    delete?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    update?: ItemUpdateWithWhereUniqueWithoutUserInput | ItemUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ItemUpdateManyWithWhereWithoutUserInput | ItemUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ItemScalarWhereInput | ItemScalarWhereInput[]
+  }
+
   export type PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<PasswordResetTokenCreateWithoutUserInput, PasswordResetTokenUncheckedCreateWithoutUserInput> | PasswordResetTokenCreateWithoutUserInput[] | PasswordResetTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PasswordResetTokenCreateOrConnectWithoutUserInput | PasswordResetTokenCreateOrConnectWithoutUserInput[]
@@ -3827,6 +7076,34 @@ export namespace Prisma {
     deleteMany?: PasswordResetTokenScalarWhereInput | PasswordResetTokenScalarWhereInput[]
   }
 
+  export type ContainerUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ContainerCreateWithoutUserInput, ContainerUncheckedCreateWithoutUserInput> | ContainerCreateWithoutUserInput[] | ContainerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ContainerCreateOrConnectWithoutUserInput | ContainerCreateOrConnectWithoutUserInput[]
+    upsert?: ContainerUpsertWithWhereUniqueWithoutUserInput | ContainerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ContainerCreateManyUserInputEnvelope
+    set?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    disconnect?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    delete?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    connect?: ContainerWhereUniqueInput | ContainerWhereUniqueInput[]
+    update?: ContainerUpdateWithWhereUniqueWithoutUserInput | ContainerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ContainerUpdateManyWithWhereWithoutUserInput | ContainerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ContainerScalarWhereInput | ContainerScalarWhereInput[]
+  }
+
+  export type ItemUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ItemCreateWithoutUserInput, ItemUncheckedCreateWithoutUserInput> | ItemCreateWithoutUserInput[] | ItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutUserInput | ItemCreateOrConnectWithoutUserInput[]
+    upsert?: ItemUpsertWithWhereUniqueWithoutUserInput | ItemUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ItemCreateManyUserInputEnvelope
+    set?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    disconnect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    delete?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    update?: ItemUpdateWithWhereUniqueWithoutUserInput | ItemUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ItemUpdateManyWithWhereWithoutUserInput | ItemUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ItemScalarWhereInput | ItemScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutPasswordResetTokenInput = {
     create?: XOR<UserCreateWithoutPasswordResetTokenInput, UserUncheckedCreateWithoutPasswordResetTokenInput>
     connectOrCreate?: UserCreateOrConnectWithoutPasswordResetTokenInput
@@ -3839,6 +7116,113 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPasswordResetTokenInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPasswordResetTokenInput, UserUpdateWithoutPasswordResetTokenInput>, UserUncheckedUpdateWithoutPasswordResetTokenInput>
+  }
+
+  export type UserCreateNestedOneWithoutContainerInput = {
+    create?: XOR<UserCreateWithoutContainerInput, UserUncheckedCreateWithoutContainerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutContainerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ItemCreateNestedManyWithoutContainerInput = {
+    create?: XOR<ItemCreateWithoutContainerInput, ItemUncheckedCreateWithoutContainerInput> | ItemCreateWithoutContainerInput[] | ItemUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutContainerInput | ItemCreateOrConnectWithoutContainerInput[]
+    createMany?: ItemCreateManyContainerInputEnvelope
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+  }
+
+  export type ItemUncheckedCreateNestedManyWithoutContainerInput = {
+    create?: XOR<ItemCreateWithoutContainerInput, ItemUncheckedCreateWithoutContainerInput> | ItemCreateWithoutContainerInput[] | ItemUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutContainerInput | ItemCreateOrConnectWithoutContainerInput[]
+    createMany?: ItemCreateManyContainerInputEnvelope
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+  }
+
+  export type EnumContainerTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ContainerType
+  }
+
+  export type UserUpdateOneRequiredWithoutContainerNestedInput = {
+    create?: XOR<UserCreateWithoutContainerInput, UserUncheckedCreateWithoutContainerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutContainerInput
+    upsert?: UserUpsertWithoutContainerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutContainerInput, UserUpdateWithoutContainerInput>, UserUncheckedUpdateWithoutContainerInput>
+  }
+
+  export type ItemUpdateManyWithoutContainerNestedInput = {
+    create?: XOR<ItemCreateWithoutContainerInput, ItemUncheckedCreateWithoutContainerInput> | ItemCreateWithoutContainerInput[] | ItemUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutContainerInput | ItemCreateOrConnectWithoutContainerInput[]
+    upsert?: ItemUpsertWithWhereUniqueWithoutContainerInput | ItemUpsertWithWhereUniqueWithoutContainerInput[]
+    createMany?: ItemCreateManyContainerInputEnvelope
+    set?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    disconnect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    delete?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    update?: ItemUpdateWithWhereUniqueWithoutContainerInput | ItemUpdateWithWhereUniqueWithoutContainerInput[]
+    updateMany?: ItemUpdateManyWithWhereWithoutContainerInput | ItemUpdateManyWithWhereWithoutContainerInput[]
+    deleteMany?: ItemScalarWhereInput | ItemScalarWhereInput[]
+  }
+
+  export type ItemUncheckedUpdateManyWithoutContainerNestedInput = {
+    create?: XOR<ItemCreateWithoutContainerInput, ItemUncheckedCreateWithoutContainerInput> | ItemCreateWithoutContainerInput[] | ItemUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutContainerInput | ItemCreateOrConnectWithoutContainerInput[]
+    upsert?: ItemUpsertWithWhereUniqueWithoutContainerInput | ItemUpsertWithWhereUniqueWithoutContainerInput[]
+    createMany?: ItemCreateManyContainerInputEnvelope
+    set?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    disconnect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    delete?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+    update?: ItemUpdateWithWhereUniqueWithoutContainerInput | ItemUpdateWithWhereUniqueWithoutContainerInput[]
+    updateMany?: ItemUpdateManyWithWhereWithoutContainerInput | ItemUpdateManyWithWhereWithoutContainerInput[]
+    deleteMany?: ItemScalarWhereInput | ItemScalarWhereInput[]
+  }
+
+  export type ItemCreatetagsInput = {
+    set: string[]
+  }
+
+  export type ContainerCreateNestedOneWithoutItemsInput = {
+    create?: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: ContainerCreateOrConnectWithoutItemsInput
+    connect?: ContainerWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutItemInput = {
+    create?: XOR<UserCreateWithoutItemInput, UserUncheckedCreateWithoutItemInput>
+    connectOrCreate?: UserCreateOrConnectWithoutItemInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ItemUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ContainerUpdateOneWithoutItemsNestedInput = {
+    create?: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
+    connectOrCreate?: ContainerCreateOrConnectWithoutItemsInput
+    upsert?: ContainerUpsertWithoutItemsInput
+    disconnect?: ContainerWhereInput | boolean
+    delete?: ContainerWhereInput | boolean
+    connect?: ContainerWhereUniqueInput
+    update?: XOR<XOR<ContainerUpdateToOneWithWhereWithoutItemsInput, ContainerUpdateWithoutItemsInput>, ContainerUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutItemNestedInput = {
+    create?: XOR<UserCreateWithoutItemInput, UserUncheckedCreateWithoutItemInput>
+    connectOrCreate?: UserCreateOrConnectWithoutItemInput
+    upsert?: UserUpsertWithoutItemInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutItemInput, UserUpdateWithoutItemInput>, UserUncheckedUpdateWithoutItemInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3988,6 +7372,50 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumContainerTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerType | EnumContainerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerTypeFilter<$PrismaModel> | $Enums.ContainerType
+  }
+
+  export type NestedEnumContainerTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerType | EnumContainerTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerType[] | ListEnumContainerTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerTypeWithAggregatesFilter<$PrismaModel> | $Enums.ContainerType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContainerTypeFilter<$PrismaModel>
+    _max?: NestedEnumContainerTypeFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type PasswordResetTokenCreateWithoutUserInput = {
     id?: string
     tokenHash: string
@@ -4009,6 +7437,74 @@ export namespace Prisma {
 
   export type PasswordResetTokenCreateManyUserInputEnvelope = {
     data: PasswordResetTokenCreateManyUserInput | PasswordResetTokenCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContainerCreateWithoutUserInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    items?: ItemCreateNestedManyWithoutContainerInput
+  }
+
+  export type ContainerUncheckedCreateWithoutUserInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    items?: ItemUncheckedCreateNestedManyWithoutContainerInput
+  }
+
+  export type ContainerCreateOrConnectWithoutUserInput = {
+    where: ContainerWhereUniqueInput
+    create: XOR<ContainerCreateWithoutUserInput, ContainerUncheckedCreateWithoutUserInput>
+  }
+
+  export type ContainerCreateManyUserInputEnvelope = {
+    data: ContainerCreateManyUserInput | ContainerCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ItemCreateWithoutUserInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    container?: ContainerCreateNestedOneWithoutItemsInput
+  }
+
+  export type ItemUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    containerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ItemCreateOrConnectWithoutUserInput = {
+    where: ItemWhereUniqueInput
+    create: XOR<ItemCreateWithoutUserInput, ItemUncheckedCreateWithoutUserInput>
+  }
+
+  export type ItemCreateManyUserInputEnvelope = {
+    data: ItemCreateManyUserInput | ItemCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -4039,6 +7535,69 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"PasswordResetToken"> | Date | string
   }
 
+  export type ContainerUpsertWithWhereUniqueWithoutUserInput = {
+    where: ContainerWhereUniqueInput
+    update: XOR<ContainerUpdateWithoutUserInput, ContainerUncheckedUpdateWithoutUserInput>
+    create: XOR<ContainerCreateWithoutUserInput, ContainerUncheckedCreateWithoutUserInput>
+  }
+
+  export type ContainerUpdateWithWhereUniqueWithoutUserInput = {
+    where: ContainerWhereUniqueInput
+    data: XOR<ContainerUpdateWithoutUserInput, ContainerUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ContainerUpdateManyWithWhereWithoutUserInput = {
+    where: ContainerScalarWhereInput
+    data: XOR<ContainerUpdateManyMutationInput, ContainerUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ContainerScalarWhereInput = {
+    AND?: ContainerScalarWhereInput | ContainerScalarWhereInput[]
+    OR?: ContainerScalarWhereInput[]
+    NOT?: ContainerScalarWhereInput | ContainerScalarWhereInput[]
+    id?: StringFilter<"Container"> | string
+    type?: EnumContainerTypeFilter<"Container"> | $Enums.ContainerType
+    userId?: StringFilter<"Container"> | string
+    name?: StringFilter<"Container"> | string
+    description?: StringNullableFilter<"Container"> | string | null
+    location?: StringNullableFilter<"Container"> | string | null
+    imageUrl?: StringNullableFilter<"Container"> | string | null
+    updatedAt?: DateTimeFilter<"Container"> | Date | string
+    createdAt?: DateTimeFilter<"Container"> | Date | string
+  }
+
+  export type ItemUpsertWithWhereUniqueWithoutUserInput = {
+    where: ItemWhereUniqueInput
+    update: XOR<ItemUpdateWithoutUserInput, ItemUncheckedUpdateWithoutUserInput>
+    create: XOR<ItemCreateWithoutUserInput, ItemUncheckedCreateWithoutUserInput>
+  }
+
+  export type ItemUpdateWithWhereUniqueWithoutUserInput = {
+    where: ItemWhereUniqueInput
+    data: XOR<ItemUpdateWithoutUserInput, ItemUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ItemUpdateManyWithWhereWithoutUserInput = {
+    where: ItemScalarWhereInput
+    data: XOR<ItemUpdateManyMutationInput, ItemUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ItemScalarWhereInput = {
+    AND?: ItemScalarWhereInput | ItemScalarWhereInput[]
+    OR?: ItemScalarWhereInput[]
+    NOT?: ItemScalarWhereInput | ItemScalarWhereInput[]
+    id?: StringFilter<"Item"> | string
+    name?: StringFilter<"Item"> | string
+    description?: StringNullableFilter<"Item"> | string | null
+    tags?: StringNullableListFilter<"Item">
+    imageUrl?: StringNullableFilter<"Item"> | string | null
+    quantity?: IntFilter<"Item"> | number
+    containerId?: StringNullableFilter<"Item"> | string | null
+    userId?: StringFilter<"Item"> | string
+    createdAt?: DateTimeFilter<"Item"> | Date | string
+    updatedAt?: DateTimeFilter<"Item"> | Date | string
+  }
+
   export type UserCreateWithoutPasswordResetTokenInput = {
     id?: string
     email: string
@@ -4049,6 +7608,8 @@ export namespace Prisma {
     isVerified?: boolean
     verificationToken?: string | null
     verificationExpiresAt?: Date | string | null
+    Container?: ContainerCreateNestedManyWithoutUserInput
+    Item?: ItemCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasswordResetTokenInput = {
@@ -4061,6 +7622,8 @@ export namespace Prisma {
     isVerified?: boolean
     verificationToken?: string | null
     verificationExpiresAt?: Date | string | null
+    Container?: ContainerUncheckedCreateNestedManyWithoutUserInput
+    Item?: ItemUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasswordResetTokenInput = {
@@ -4089,6 +7652,8 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Container?: ContainerUpdateManyWithoutUserNestedInput
+    Item?: ItemUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasswordResetTokenInput = {
@@ -4101,6 +7666,266 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Container?: ContainerUncheckedUpdateManyWithoutUserNestedInput
+    Item?: ItemUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutContainerInput = {
+    id?: string
+    email: string
+    password: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isVerified?: boolean
+    verificationToken?: string | null
+    verificationExpiresAt?: Date | string | null
+    PasswordResetToken?: PasswordResetTokenCreateNestedManyWithoutUserInput
+    Item?: ItemCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutContainerInput = {
+    id?: string
+    email: string
+    password: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isVerified?: boolean
+    verificationToken?: string | null
+    verificationExpiresAt?: Date | string | null
+    PasswordResetToken?: PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+    Item?: ItemUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutContainerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutContainerInput, UserUncheckedCreateWithoutContainerInput>
+  }
+
+  export type ItemCreateWithoutContainerInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutItemInput
+  }
+
+  export type ItemUncheckedCreateWithoutContainerInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ItemCreateOrConnectWithoutContainerInput = {
+    where: ItemWhereUniqueInput
+    create: XOR<ItemCreateWithoutContainerInput, ItemUncheckedCreateWithoutContainerInput>
+  }
+
+  export type ItemCreateManyContainerInputEnvelope = {
+    data: ItemCreateManyContainerInput | ItemCreateManyContainerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutContainerInput = {
+    update: XOR<UserUpdateWithoutContainerInput, UserUncheckedUpdateWithoutContainerInput>
+    create: XOR<UserCreateWithoutContainerInput, UserUncheckedCreateWithoutContainerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutContainerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutContainerInput, UserUncheckedUpdateWithoutContainerInput>
+  }
+
+  export type UserUpdateWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PasswordResetToken?: PasswordResetTokenUpdateManyWithoutUserNestedInput
+    Item?: ItemUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PasswordResetToken?: PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    Item?: ItemUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ItemUpsertWithWhereUniqueWithoutContainerInput = {
+    where: ItemWhereUniqueInput
+    update: XOR<ItemUpdateWithoutContainerInput, ItemUncheckedUpdateWithoutContainerInput>
+    create: XOR<ItemCreateWithoutContainerInput, ItemUncheckedCreateWithoutContainerInput>
+  }
+
+  export type ItemUpdateWithWhereUniqueWithoutContainerInput = {
+    where: ItemWhereUniqueInput
+    data: XOR<ItemUpdateWithoutContainerInput, ItemUncheckedUpdateWithoutContainerInput>
+  }
+
+  export type ItemUpdateManyWithWhereWithoutContainerInput = {
+    where: ItemScalarWhereInput
+    data: XOR<ItemUpdateManyMutationInput, ItemUncheckedUpdateManyWithoutContainerInput>
+  }
+
+  export type ContainerCreateWithoutItemsInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutContainerInput
+  }
+
+  export type ContainerUncheckedCreateWithoutItemsInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    userId: string
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type ContainerCreateOrConnectWithoutItemsInput = {
+    where: ContainerWhereUniqueInput
+    create: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
+  }
+
+  export type UserCreateWithoutItemInput = {
+    id?: string
+    email: string
+    password: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isVerified?: boolean
+    verificationToken?: string | null
+    verificationExpiresAt?: Date | string | null
+    PasswordResetToken?: PasswordResetTokenCreateNestedManyWithoutUserInput
+    Container?: ContainerCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutItemInput = {
+    id?: string
+    email: string
+    password: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isVerified?: boolean
+    verificationToken?: string | null
+    verificationExpiresAt?: Date | string | null
+    PasswordResetToken?: PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+    Container?: ContainerUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutItemInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutItemInput, UserUncheckedCreateWithoutItemInput>
+  }
+
+  export type ContainerUpsertWithoutItemsInput = {
+    update: XOR<ContainerUpdateWithoutItemsInput, ContainerUncheckedUpdateWithoutItemsInput>
+    create: XOR<ContainerCreateWithoutItemsInput, ContainerUncheckedCreateWithoutItemsInput>
+    where?: ContainerWhereInput
+  }
+
+  export type ContainerUpdateToOneWithWhereWithoutItemsInput = {
+    where?: ContainerWhereInput
+    data: XOR<ContainerUpdateWithoutItemsInput, ContainerUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type ContainerUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutContainerNestedInput
+  }
+
+  export type ContainerUncheckedUpdateWithoutItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutItemInput = {
+    update: XOR<UserUpdateWithoutItemInput, UserUncheckedUpdateWithoutItemInput>
+    create: XOR<UserCreateWithoutItemInput, UserUncheckedCreateWithoutItemInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutItemInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutItemInput, UserUncheckedUpdateWithoutItemInput>
+  }
+
+  export type UserUpdateWithoutItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PasswordResetToken?: PasswordResetTokenUpdateManyWithoutUserNestedInput
+    Container?: ContainerUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PasswordResetToken?: PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    Container?: ContainerUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PasswordResetTokenCreateManyUserInput = {
@@ -4108,6 +7933,29 @@ export namespace Prisma {
     tokenHash: string
     expiresAt: Date | string
     createdAt?: Date | string
+  }
+
+  export type ContainerCreateManyUserInput = {
+    id?: string
+    type?: $Enums.ContainerType
+    name: string
+    description?: string | null
+    location?: string | null
+    imageUrl?: string | null
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type ItemCreateManyUserInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    containerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PasswordResetTokenUpdateWithoutUserInput = {
@@ -4129,6 +7977,125 @@ export namespace Prisma {
     tokenHash?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContainerUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: ItemUpdateManyWithoutContainerNestedInput
+  }
+
+  export type ContainerUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
+  }
+
+  export type ContainerUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumContainerTypeFieldUpdateOperationsInput | $Enums.ContainerType
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    container?: ContainerUpdateOneWithoutItemsNestedInput
+  }
+
+  export type ItemUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    containerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    containerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemCreateManyContainerInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tags?: ItemCreatetagsInput | string[]
+    imageUrl?: string | null
+    quantity?: number
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ItemUpdateWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutItemNestedInput
+  }
+
+  export type ItemUncheckedUpdateWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemUncheckedUpdateManyWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: ItemUpdatetagsInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

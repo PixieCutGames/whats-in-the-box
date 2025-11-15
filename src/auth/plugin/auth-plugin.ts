@@ -40,8 +40,6 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
     fastify.decorate("requireValidation", opts.requireValidation);
   }
 
-  // CORS or other plugin can be enabled by the app
-
   // register routes
   fastify.register(registerRoute, { prefix: "/auth" });
   fastify.register(loginRoute, { prefix: "/auth" });
