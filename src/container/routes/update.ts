@@ -5,7 +5,7 @@ const updateSchema = z.object({
   name: z.string().min(1).optional(),
   description: z.string().optional(),
   location: z.string().optional(),
-  imageUrl: z.url().optional(),
+  imageUrl: z.url().optional().nullable(),
 });
 
 const updateRoute: FastifyPluginAsync = async (fastify) => {
@@ -41,7 +41,7 @@ const updateRoute: FastifyPluginAsync = async (fastify) => {
           data: parsed,
         });
 
-        return updated;
+        return { container: updated };
       } catch (error) {
         console.log(error);
         return reply.code(500).send({ error: "Internal server error" });

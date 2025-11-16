@@ -20,7 +20,7 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
         return reply.code(404).send({ message: "Container not found." });
       }
 
-      return container;
+      return { container };
     }
   );
 };

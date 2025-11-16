@@ -4,6 +4,7 @@ import getByIdRoute from "../routes/getById.js";
 import createRoute from "../routes/create.js";
 import getAllRoute from "../routes/getAll.js";
 import updateRoute from "../routes/update.js";
+import deleteRoute from "../routes/delete.js";
 
 const containerPlugin = fp(async (fastify: FastifyInstance) => {
   // register routes
@@ -11,6 +12,7 @@ const containerPlugin = fp(async (fastify: FastifyInstance) => {
   fastify.register(getAllRoute, { prefix: "/containers" });
   fastify.register(createRoute, { prefix: "/container" });
   fastify.register(updateRoute, { prefix: "/container" });
+  fastify.register(deleteRoute, { prefix: "/container" });
 });
 
 export default containerPlugin;
