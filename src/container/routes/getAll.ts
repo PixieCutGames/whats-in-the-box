@@ -12,15 +12,19 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
         where: { userId },
         orderBy: { createdAt: "desc" },
         include: {
-          items: {
-            select: {
-              id: true,
-            },
+          _count: {
+            select: { items: true },
           },
         },
       });
 
-      return { containers };
+      return {
+        containers: containers.map((c: any) => ({
+          ...c,
+          items: c._count.items,
+          _count: undefined,
+        })),
+      };
     }
   );
 };
