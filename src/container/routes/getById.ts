@@ -20,7 +20,14 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
         return reply.code(404).send({ message: "Container not found." });
       }
 
-      return { container };
+      return {
+        container: {
+          ...container,
+          imageUrl: container.imageId
+            ? `https://res.cloudinary.com/dtbuugq1u/image/upload/v1763329365/${container.imageId}`
+            : null,
+        },
+      };
     }
   );
 };

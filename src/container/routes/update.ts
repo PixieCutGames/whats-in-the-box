@@ -5,7 +5,7 @@ const updateSchema = z.object({
   name: z.string().min(1).optional(),
   description: z.string().optional(),
   location: z.string().optional(),
-  imageUrl: z.url().optional().nullable(),
+  imageId: z.url().optional().nullable(),
 });
 
 const updateRoute: FastifyPluginAsync = async (fastify) => {
@@ -40,6 +40,8 @@ const updateRoute: FastifyPluginAsync = async (fastify) => {
           where: { id },
           data: parsed,
         });
+
+        // TODO: replace old image with a new one and delete the old one
 
         return { container: updated };
       } catch (error) {

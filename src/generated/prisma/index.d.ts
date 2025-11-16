@@ -3483,6 +3483,7 @@ export namespace Prisma {
     description: string | null
     location: string | null
     imageUrl: string | null
+    imageId: string | null
     updatedAt: Date | null
     createdAt: Date | null
   }
@@ -3495,6 +3496,7 @@ export namespace Prisma {
     description: string | null
     location: string | null
     imageUrl: string | null
+    imageId: string | null
     updatedAt: Date | null
     createdAt: Date | null
   }
@@ -3507,6 +3509,7 @@ export namespace Prisma {
     description: number
     location: number
     imageUrl: number
+    imageId: number
     updatedAt: number
     createdAt: number
     _all: number
@@ -3521,6 +3524,7 @@ export namespace Prisma {
     description?: true
     location?: true
     imageUrl?: true
+    imageId?: true
     updatedAt?: true
     createdAt?: true
   }
@@ -3533,6 +3537,7 @@ export namespace Prisma {
     description?: true
     location?: true
     imageUrl?: true
+    imageId?: true
     updatedAt?: true
     createdAt?: true
   }
@@ -3545,6 +3550,7 @@ export namespace Prisma {
     description?: true
     location?: true
     imageUrl?: true
+    imageId?: true
     updatedAt?: true
     createdAt?: true
     _all?: true
@@ -3630,6 +3636,7 @@ export namespace Prisma {
     description: string | null
     location: string | null
     imageUrl: string | null
+    imageId: string | null
     updatedAt: Date
     createdAt: Date
     _count: ContainerCountAggregateOutputType | null
@@ -3659,6 +3666,7 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageUrl?: boolean
+    imageId?: boolean
     updatedAt?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3674,6 +3682,7 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageUrl?: boolean
+    imageId?: boolean
     updatedAt?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3687,6 +3696,7 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageUrl?: boolean
+    imageId?: boolean
     updatedAt?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3700,11 +3710,12 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageUrl?: boolean
+    imageId?: boolean
     updatedAt?: boolean
     createdAt?: boolean
   }
 
-  export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "userId" | "name" | "description" | "location" | "imageUrl" | "updatedAt" | "createdAt", ExtArgs["result"]["container"]>
+  export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "userId" | "name" | "description" | "location" | "imageUrl" | "imageId" | "updatedAt" | "createdAt", ExtArgs["result"]["container"]>
   export type ContainerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     items?: boolean | Container$itemsArgs<ExtArgs>
@@ -3731,6 +3742,7 @@ export namespace Prisma {
       description: string | null
       location: string | null
       imageUrl: string | null
+      imageId: string | null
       updatedAt: Date
       createdAt: Date
     }, ExtArgs["result"]["container"]>
@@ -4165,6 +4177,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Container", 'String'>
     readonly location: FieldRef<"Container", 'String'>
     readonly imageUrl: FieldRef<"Container", 'String'>
+    readonly imageId: FieldRef<"Container", 'String'>
     readonly updatedAt: FieldRef<"Container", 'DateTime'>
     readonly createdAt: FieldRef<"Container", 'DateTime'>
   }
@@ -5833,6 +5846,7 @@ export namespace Prisma {
     description: 'description',
     location: 'location',
     imageUrl: 'imageUrl',
+    imageId: 'imageId',
     updatedAt: 'updatedAt',
     createdAt: 'createdAt'
   };
@@ -6112,6 +6126,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Container"> | string | null
     location?: StringNullableFilter<"Container"> | string | null
     imageUrl?: StringNullableFilter<"Container"> | string | null
+    imageId?: StringNullableFilter<"Container"> | string | null
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -6126,6 +6141,7 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
+    imageId?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -6143,6 +6159,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Container"> | string | null
     location?: StringNullableFilter<"Container"> | string | null
     imageUrl?: StringNullableFilter<"Container"> | string | null
+    imageId?: StringNullableFilter<"Container"> | string | null
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -6157,6 +6174,7 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
+    imageId?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
     _count?: ContainerCountOrderByAggregateInput
@@ -6175,6 +6193,7 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Container"> | string | null
     location?: StringNullableWithAggregatesFilter<"Container"> | string | null
     imageUrl?: StringNullableWithAggregatesFilter<"Container"> | string | null
+    imageId?: StringNullableWithAggregatesFilter<"Container"> | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"Container"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Container"> | Date | string
   }
@@ -6422,6 +6441,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutContainerInput
@@ -6436,6 +6456,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
     items?: ItemUncheckedCreateNestedManyWithoutContainerInput
@@ -6448,6 +6469,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutContainerNestedInput
@@ -6462,6 +6484,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
@@ -6475,6 +6498,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
   }
@@ -6486,6 +6510,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6498,6 +6523,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6835,6 +6861,7 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     imageUrl?: SortOrder
+    imageId?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -6847,6 +6874,7 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     imageUrl?: SortOrder
+    imageId?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -6859,6 +6887,7 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     imageUrl?: SortOrder
+    imageId?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -7447,6 +7476,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
     items?: ItemCreateNestedManyWithoutContainerInput
@@ -7459,6 +7489,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
     items?: ItemUncheckedCreateNestedManyWithoutContainerInput
@@ -7562,6 +7593,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Container"> | string | null
     location?: StringNullableFilter<"Container"> | string | null
     imageUrl?: StringNullableFilter<"Container"> | string | null
+    imageId?: StringNullableFilter<"Container"> | string | null
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
   }
@@ -7799,6 +7831,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutContainerInput
@@ -7812,6 +7845,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
   }
@@ -7872,6 +7906,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutContainerNestedInput
@@ -7885,6 +7920,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7942,6 +7978,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageUrl?: string | null
+    imageId?: string | null
     updatedAt?: Date | string
     createdAt?: Date | string
   }
@@ -7986,6 +8023,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: ItemUpdateManyWithoutContainerNestedInput
@@ -7998,6 +8036,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
@@ -8010,6 +8049,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

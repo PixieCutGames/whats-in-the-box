@@ -5,7 +5,7 @@ const createSchema = z.object({
   name: z.string().min(1),
   description: z.string().optional(),
   location: z.string().optional(),
-  imageUrl: z.url().optional(),
+  imageId: z.url().optional(),
 });
 
 const createRoute: FastifyPluginAsync = async (fastify) => {
@@ -22,14 +22,14 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
     async (request, reply) => {
       const userId = request.user.sub;
       const body = request.body as any;
-      const parsed: any = createSchema.parse(body);
+      const parsed = createSchema.parse(body);
 
       if (!userId) return reply.code(404).send({ error: "Unauthorized" });
 
       try {
         const container = await fastify.prisma.container.create({
           data: {
-            ...body,
+            ...parsed,
             userId,
           },
         });
