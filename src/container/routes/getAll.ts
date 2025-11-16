@@ -23,6 +23,9 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
           ...c,
           items: c._count.items,
           _count: undefined,
+          imageUrl: c.imageId
+            ? `https://res.cloudinary.com/dtbuugq1u/image/upload/v1763329365/${c.imageId}`
+            : null,
         })),
       };
     }

@@ -41,6 +41,7 @@ model Container {
     description String?
     location    String? // e.g., Room / Shelf / Storage area
     imageUrl    String? // optional preview image
+    imageId     String?
     updatedAt   DateTime      @updatedAt
     createdAt   DateTime      @default(now())
     items       Item[]
