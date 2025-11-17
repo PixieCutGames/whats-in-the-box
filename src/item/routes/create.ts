@@ -4,8 +4,9 @@ import { z } from "zod";
 const createSchema = z.object({
   name: z.string().min(1),
   description: z.string().optional(),
-  location: z.string().optional(),
-  imageId: z.string().optional(),
+  imageId: z.string().optional().nullable(),
+  quantity: z.number(),
+  containerId: z.string(),
 });
 
 const createRoute: FastifyPluginAsync = async (fastify) => {
@@ -27,14 +28,14 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
       if (!userId) return reply.code(404).send({ error: "Unauthorized" });
 
       try {
-        const container = await fastify.prisma.container.create({
+        const item = await fastify.prisma.item.create({
           data: {
             ...parsed,
             userId,
           },
         });
 
-        return reply.code(201).send({ container });
+        return reply.code(201).send({ item });
       } catch (error) {
         console.log(error);
         return reply.code(500).send({ error: "Internal server error" });
