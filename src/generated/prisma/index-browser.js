@@ -148,7 +148,6 @@ exports.Prisma.ContainerScalarFieldEnum = {
   name: 'name',
   description: 'description',
   location: 'location',
-  imageUrl: 'imageUrl',
   imageId: 'imageId',
   updatedAt: 'updatedAt',
   createdAt: 'createdAt'
@@ -159,7 +158,7 @@ exports.Prisma.ItemScalarFieldEnum = {
   name: 'name',
   description: 'description',
   tags: 'tags',
-  imageUrl: 'imageUrl',
+  imageId: 'imageId',
   quantity: 'quantity',
   containerId: 'containerId',
   userId: 'userId',

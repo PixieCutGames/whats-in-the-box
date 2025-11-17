@@ -9,39 +9,35 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
       const userId = request.user.sub;
       if (!userId) return reply.code(404).send({ error: "Unauthorized" });
 
-      const container = await fastify.prisma.container.findFirst({
+      const item = await fastify.prisma.item.findFirst({
         where: { id, userId },
         include: {
-          items: {
+          container: {
             select: {
-              id: true,
               name: true,
-              quantity: true,
-              updatedAt: true,
+              id: true,
               imageId: true,
             },
           },
         },
       });
 
-      if (!container) {
-        return reply.code(404).send({ message: "Container not found." });
+      if (!item) {
+        return reply.code(404).send({ message: "Item not found." });
       }
 
       return {
-        container: {
-          ...container,
-          imageUrl: container.imageId
-            ? `${process.env.CLOUDINARY_IMAGE_URL}${container.imageId}`
+        item: {
+          ...item,
+          imageUrl: item.imageId
+            ? `${process.env.CLOUDINARY_IMAGE_URL}${item.imageId}`
             : null,
-          items: container.items.map((i: any) => {
-            return {
-              ...i,
-              imageUrl: i.imageId
-                ? `${process.env.CLOUDINARY_IMAGE_URL}${i.imageId}`
-                : null,
-            };
-          }),
+          container: {
+            ...item.container,
+            imageUrl: item.container.imageId
+              ? `${process.env.CLOUDINARY_IMAGE_URL}${item.container.imageId}`
+              : null,
+          },
         },
       };
     }

@@ -13,20 +13,19 @@ const deleteRoute: FastifyPluginAsync = async (fastify) => {
       if (!userId) return reply.code(404).send({ error: "Unauthorized" });
 
       try {
-        const existing = await fastify.prisma.container.findFirst({
+        const existing = await fastify.prisma.item.findFirst({
           where: { id, userId },
         });
 
         if (!existing) {
-          return reply.code(404).send({ message: "Container not found." });
+          return reply.code(404).send({ message: "Item not found." });
         }
 
-        await fastify.prisma.container.delete({
+        await fastify.prisma.item.delete({
           where: { id },
         });
 
-        // TODO: delete items in the container
-        return reply.send({ message: "Container deleted successfully." });
+        return reply.send({ message: "Item deleted successfully." });
       } catch (error) {
         console.log(error);
         return reply.code(500).send({ error: "Internal server error" });

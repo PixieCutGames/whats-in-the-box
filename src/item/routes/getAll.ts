@@ -8,24 +8,32 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
       const userId = request.user.sub;
       if (!userId) return reply.code(404).send({ error: "Unauthorized" });
 
-      const containers = await fastify.prisma.container.findMany({
+      const items = await fastify.prisma.item.findMany({
         where: { userId },
         orderBy: { createdAt: "desc" },
         include: {
-          _count: {
-            select: { items: true },
+          container: {
+            select: {
+              name: true,
+              id: true,
+              imageId: true,
+            },
           },
         },
       });
 
       return {
-        containers: containers.map((c: any) => ({
+        items: items.map((c: any) => ({
           ...c,
-          items: c._count.items,
-          _count: undefined,
           imageUrl: c.imageId
             ? `${process.env.CLOUDINARY_IMAGE_URL}${c.imageId}`
             : null,
+          container: {
+            ...c.container,
+            imageUrl: c.container.imageId
+              ? `${process.env.CLOUDINARY_IMAGE_URL}${c.container.imageId}`
+              : null,
+          },
         })),
       };
     }
