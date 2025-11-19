@@ -5,7 +5,7 @@ const createSchema = z.object({
   name: z.string().min(1),
   description: z.string().optional(),
   location: z.string().optional(),
-  imageId: z.string().optional(),
+  imageId: z.string().nullable().optional(),
 });
 
 const createRoute: FastifyPluginAsync = async (fastify) => {
@@ -33,6 +33,21 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
             userId,
           },
         });
+
+        try {
+          await fastify.prisma.activity.create({
+            data: {
+              userId,
+              type: "container_created",
+              message: `Added "${parsed.name}"`,
+              metadata: {
+                containerId: container.id,
+              },
+            },
+          });
+        } catch (error) {
+          console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
+        }
 
         return reply.code(201).send({ container });
       } catch (error) {

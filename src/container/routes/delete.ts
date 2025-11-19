@@ -25,6 +25,21 @@ const deleteRoute: FastifyPluginAsync = async (fastify) => {
           where: { id },
         });
 
+        try {
+          await fastify.prisma.activity.create({
+            data: {
+              userId,
+              type: "container_deleted",
+              message: `Deleted "${existing.name}"`,
+              metadata: {
+                containerId: id,
+              },
+            },
+          });
+        } catch (error) {
+          console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
+        }
+
         // TODO: delete items in the container
         return reply.send({ message: "Container deleted successfully." });
       } catch (error) {

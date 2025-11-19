@@ -45,6 +45,22 @@ const updateRoute: FastifyPluginAsync = async (fastify) => {
 
         // TODO: replace old image with a new one and delete the old one
 
+        try {
+          await fastify.prisma.activity.create({
+            data: {
+              userId,
+              type: "item_updated",
+              message: `Updated "${parsed.name}"`,
+              metadata: {
+                containerId: parsed.containerId,
+                itemId: id,
+              },
+            },
+          });
+        } catch (error) {
+          console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
+        }
+
         return { item: updated };
       } catch (error) {
         console.log(error);
