@@ -33,7 +33,31 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
             ...parsed,
             userId,
           },
+          include: {
+            container: {
+              select: {
+                name: true,
+                id: true,
+              },
+            },
+          },
         });
+
+        try {
+          await fastify.prisma.activity.create({
+            data: {
+              userId,
+              type: "item_created",
+              message: `Added "${parsed.name}" to ${item.container.name}`,
+              metadata: {
+                itemId: item.id,
+                containerId: parsed.containerId,
+              },
+            },
+          });
+        } catch (error) {
+          console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
+        }
 
         return reply.code(201).send({ item });
       } catch (error) {

@@ -8,6 +8,7 @@ import containerPlugin from "./src/container/plugin/container-plugin.js";
 import itemPlugin from "./src/item/plugin/item-plugin.js";
 import mediaPlugin from "./src/media/plugin/media-plugin.js";
 import searchPlugin from "./src/search/plugin/search-plugin.js";
+import dashboardPlugin from "./src/dashboard/plugin/dashboard-plugin.js";
 import cors from "@fastify/cors";
 
 dotenv.config();
@@ -31,6 +32,7 @@ fastify.register(containerPlugin as any);
 fastify.register(itemPlugin as any);
 fastify.register(mediaPlugin as any);
 fastify.register(searchPlugin as any);
+fastify.register(dashboardPlugin as any);
 
 const allowedOrigins = [process.env.FRONTEND_URL];
 

@@ -10,7 +10,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
 
       const items = await fastify.prisma.item.findMany({
         where: { userId },
-        orderBy: { createdAt: "desc" },
+        orderBy: { updatedAt: "desc" },
         include: {
           container: {
             select: {
