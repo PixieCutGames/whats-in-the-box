@@ -21,7 +21,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
       return {
         containers: containers.map((c: any) => ({
           ...c,
-          items: c._count.items,
+          itemsCount: c._count.items,
           _count: undefined,
           imageUrl: c.imageId
             ? `${process.env.CLOUDINARY_IMAGE_URL}${c.imageId}`
