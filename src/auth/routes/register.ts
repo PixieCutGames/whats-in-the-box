@@ -2,6 +2,7 @@ import { FastifyPluginAsync } from "fastify";
 import { z } from "zod";
 import { hashPassword } from "../utils/password.js";
 import * as crypto from "crypto";
+import { sendVerificationEmail } from "../../emails/sendVerificationEmail.js";
 
 const schema = z.object({
   email: z.email(),
@@ -52,9 +53,10 @@ const registerRoute: FastifyPluginAsync = async (fastify) => {
       });
 
       let verificationLink: string | undefined;
-      if (fastify.requireValidation) {
+      if (fastify.requireValidation && token) {
         verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
-        // TODO:  send email using resend.com
+        const res = await sendVerificationEmail(user.email, token);
+        console.log("sent", res.data, res.error);
       }
 
       reply.send({

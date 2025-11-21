@@ -1,6 +1,7 @@
 import { FastifyPluginAsync } from "fastify";
 import { z } from "zod";
 import crypto from "crypto";
+import { sendForgotPasswordEmail } from "../../emails/sendForgotPasswordEmail.js";
 
 const forgotPasswordSchema = z.object({
   email: z.email(),
@@ -51,15 +52,13 @@ const forgotPasswordRoute: FastifyPluginAsync = async (fastify) => {
         },
       });
 
-      // 5. Send email (placeholder)
+      // 5. Send email
       const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${rawToken}`;
 
-      // TODO:  send email using resend.com
-      //   await fastify.mailer.sendMail({
-      //     to: email,
-      //     subject: "Reset your WITB password",
-      //     text: `Click the link to reset your password: ${resetUrl}`,
-      //   });
+      if ((user.email, rawToken)) {
+        const res = await sendForgotPasswordEmail(user.email, rawToken);
+        console.log("sent", res.data, res.error);
+      }
 
       return reply.send({
         message: "If an account exists, a password reset email has been sent.",

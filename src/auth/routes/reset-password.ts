@@ -3,6 +3,7 @@ import { z } from "zod";
 import crypto from "crypto";
 import { hash } from "argon2";
 import { hashPassword } from "../utils/password.js";
+import { sendPasswordResetConfirmationEmail } from "../../emails/sendPasswordResetConfirmationEmail.js";
 
 const resetPasswordSchema = z.object({
   token: z.string().min(10),
@@ -51,7 +52,7 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
       // 4. Update user password
       const hashedPassword = await hashPassword(newPassword);
 
-      await fastify.prisma.user.update({
+      const user = await fastify.prisma.user.update({
         where: { id: tokenRecord.userId },
         data: { password: hashedPassword },
       });
@@ -60,6 +61,11 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
       await fastify.prisma.passwordResetToken.delete({
         where: { id: tokenRecord.id },
       });
+
+      if (user.email) {
+        const res = await sendPasswordResetConfirmationEmail(user.email);
+        console.log("sent", res.data, res.error);
+      }
 
       return reply.send({
         message: "Password has been reset successfully.",
