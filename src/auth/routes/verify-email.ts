@@ -1,4 +1,5 @@
 import { FastifyPluginAsync } from "fastify";
+import { sendWelcomeEmail } from "../../emails/sendWelcomeEmail.js";
 
 const verifyEmailRoute: FastifyPluginAsync = async (fastify, opts) => {
   fastify.get("/verify-email", async (request, reply) => {
@@ -25,6 +26,11 @@ const verifyEmailRoute: FastifyPluginAsync = async (fastify, opts) => {
         verificationExpiresAt: null,
       },
     });
+
+    if (user.email) {
+      const res = await sendWelcomeEmail(user.email);
+      console.log("sent", res.data, res.error);
+    }
 
     return reply.send({ success: true });
   });

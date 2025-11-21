@@ -20,7 +20,7 @@ const changePasswordRoute: FastifyPluginAsync = async (fastify, opts) => {
     },
     async (request, reply) => {
       const body = request.body as any;
-      const parsed = schema.parse(body);
+      const { data: parsed, error } = schema.safeParse(body);
 
       const userId = request.user.sub;
       try {
@@ -30,12 +30,16 @@ const changePasswordRoute: FastifyPluginAsync = async (fastify, opts) => {
         });
 
         if (!user) {
-          return reply.code(404).send({ error: "User not found" });
+          return reply.code(404).send({ error: "Unauthorized" });
+        }
+
+        if (!parsed || error) {
+          return reply.code(400).send({ error: JSON.stringify(error) });
         }
 
         const ok = await verifyPassword(user.password, parsed.currentPassword);
         if (!ok)
-          return reply.status(401).send({ message: "Invalid credentials" });
+          return reply.status(400).send({ message: "Invalid credentials" });
 
         const hashed = await hashPassword(parsed.newPassword);
 

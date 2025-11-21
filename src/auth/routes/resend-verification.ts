@@ -1,5 +1,6 @@
 import { FastifyPluginAsync } from "fastify";
 import * as crypto from "crypto";
+import { sendVerificationEmail } from "../../emails/sendVerificationEmail.js";
 
 const resendVerificationRoute: FastifyPluginAsync = async (fastify) => {
   fastify.patch(
@@ -33,7 +34,11 @@ const resendVerificationRoute: FastifyPluginAsync = async (fastify) => {
       });
 
       const verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
-      // TODO:  send email using resend.com
+
+      if (token) {
+        const res = await sendVerificationEmail(updatedUser.email, token);
+        console.log("sent", res.data, res.error);
+      }
 
       reply.send({
         verificationToken: token,
