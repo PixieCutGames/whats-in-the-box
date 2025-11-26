@@ -8,15 +8,14 @@ const uploadRoute: FastifyPluginAsync = async (fastify) => {
       preHandler: fastify.authenticate,
     },
     async (request, reply) => {
-      const { id } = request.params as { id: string };
       const userId = request.user.sub;
 
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const data = await request.file();
 
       if (!data) {
-        return reply.status(400).send({ message: "No file uploaded" });
+        throw fastify.httpErrors.badRequest("No file uploaded");
       }
 
       // convert file to buffer

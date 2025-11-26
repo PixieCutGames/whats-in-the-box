@@ -4,6 +4,7 @@ import getStatsRoute from "../routes/getStats.js";
 import getActivitiesRoute from "../routes/getActivities.js";
 
 const dashboardPlugin = fp(async (fastify: FastifyInstance) => {
+  console.log("Plugin loaded:", "🗂️ dashboard plugin");
   // register routes
   fastify.register(getStatsRoute, { prefix: "/dashboard" });
   fastify.register(getActivitiesRoute, { prefix: "/dashboard" });

@@ -15,11 +15,10 @@ const loginRoute: FastifyPluginAsync = async (fastify, opts) => {
     const user = await fastify.prisma.user.findUnique({
       where: { email: parsed.email },
     });
-    if (!user)
-      return reply.status(401).send({ message: "Invalid credentials" });
+    if (!user) throw fastify.httpErrors.unauthorized("Invalid credentials");
 
     const ok = await verifyPassword(user.password, parsed.password);
-    if (!ok) return reply.status(401).send({ message: "Invalid credentials" });
+    if (!ok) throw fastify.httpErrors.unauthorized("Invalid credentials");
 
     const accessToken = fastify.jwt.sign(
       { sub: user.id },
@@ -30,7 +29,7 @@ const loginRoute: FastifyPluginAsync = async (fastify, opts) => {
       { expiresIn: "30d" }
     );
 
-    reply.send({
+    return reply.send({
       accessToken,
       refreshToken,
       user: { id: user.id, email: user.email, name: user.name },

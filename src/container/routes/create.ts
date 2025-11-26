@@ -24,36 +24,31 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
       const body = request.body as any;
       const parsed = createSchema.parse(body);
 
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
+
+      const container = await fastify.prisma.container.create({
+        data: {
+          ...parsed,
+          userId,
+        },
+      });
 
       try {
-        const container = await fastify.prisma.container.create({
+        await fastify.prisma.activity.create({
           data: {
-            ...parsed,
             userId,
+            type: "container_created",
+            message: `Added "${parsed.name}"`,
+            metadata: {
+              containerId: container.id,
+            },
           },
         });
-
-        try {
-          await fastify.prisma.activity.create({
-            data: {
-              userId,
-              type: "container_created",
-              message: `Added "${parsed.name}"`,
-              metadata: {
-                containerId: container.id,
-              },
-            },
-          });
-        } catch (error) {
-          console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
-        }
-
-        return reply.code(201).send({ container });
       } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: "Internal server error" });
+        console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
       }
+
+      return reply.code(201).send({ container });
     }
   );
 };

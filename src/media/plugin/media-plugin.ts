@@ -4,6 +4,7 @@ import Multipart from "@fastify/multipart";
 import uploadRoute from "../routes/upload.js";
 
 const mediaPlugin = fp(async (fastify: FastifyInstance) => {
+  console.log("Plugin loaded:", "🖼️ media plugin");
   // register routes
   fastify.register(Multipart);
   fastify.register(uploadRoute, { prefix: "/media" });

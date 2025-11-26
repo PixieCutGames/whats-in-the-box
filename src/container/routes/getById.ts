@@ -7,7 +7,7 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
     async (request, reply) => {
       const { id } = request.params as { id: string };
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const container = await fastify.prisma.container.findFirst({
         where: { id, userId },
@@ -25,10 +25,10 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
       });
 
       if (!container) {
-        return reply.code(404).send({ message: "Container not found." });
+        throw fastify.httpErrors.notFound("Container not found");
       }
 
-      return {
+      return reply.send({
         container: {
           ...container,
           imageUrl: container.imageId
@@ -43,7 +43,7 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
             };
           }),
         },
-      };
+      });
     }
   );
 };

@@ -30,30 +30,25 @@ const updateUserRoute: FastifyPluginAsync = async (fastify, opts) => {
       const parsed: any = userSchema.parse(body);
 
       const userId = request.user.sub;
-      try {
-        const user = await fastify.prisma.user.findUnique({
-          where: { id: userId },
-        });
+      const user = await fastify.prisma.user.findUnique({
+        where: { id: userId },
+      });
 
-        if (!user) {
-          return reply.code(404).send({ error: "User not found" });
-        }
-
-        const updatedUser = await fastify.prisma.user.update({
-          where: { id: userId },
-          data: { ...parsed },
-          omit: {
-            password: true,
-          },
-        });
-
-        return reply.send({
-          user: updatedUser,
-        });
-      } catch (err) {
-        console.log(err);
-        return reply.code(500).send({ error: "Internal server error" });
+      if (!user) {
+        throw fastify.httpErrors.notFound("User not found");
       }
+
+      const updatedUser = await fastify.prisma.user.update({
+        where: { id: userId },
+        data: { ...parsed },
+        omit: {
+          password: true,
+        },
+      });
+
+      return reply.send({
+        user: updatedUser,
+      });
     }
   );
 };

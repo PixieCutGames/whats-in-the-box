@@ -6,7 +6,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
     { preHandler: fastify.authenticate },
     async (request, reply) => {
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const items = await fastify.prisma.item.findMany({
         where: { userId },
@@ -22,7 +22,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
         },
       });
 
-      return {
+      return reply.send({
         items: items.map((c: any) => ({
           ...c,
           imageUrl: c.imageId
@@ -35,7 +35,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
               : null,
           },
         })),
-      };
+      });
     }
   );
 };

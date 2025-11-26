@@ -2,37 +2,22 @@ import Fastify from "fastify";
 import { PrismaClient } from "./src/generated/prisma/index.js";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import dotenv from "dotenv";
-import { z } from "zod";
+import { ZodError, z } from "zod";
+import cors from "@fastify/cors";
+import fastifySensible from "@fastify/sensible";
 import authPlugin from "./src/auth/plugin/auth-plugin.js";
 import containerPlugin from "./src/container/plugin/container-plugin.js";
 import itemPlugin from "./src/item/plugin/item-plugin.js";
 import mediaPlugin from "./src/media/plugin/media-plugin.js";
 import searchPlugin from "./src/search/plugin/search-plugin.js";
 import dashboardPlugin from "./src/dashboard/plugin/dashboard-plugin.js";
-import cors from "@fastify/cors";
+import errorHandler from "./src/errorHandler/plugin/error-handler.js";
 
 dotenv.config();
 
 const fastify = Fastify({ logger: true });
 
 const prisma = new PrismaClient().$extends(withAccelerate());
-
-fastify.register(authPlugin as any, {
-  prisma,
-  jwtSecret: process.env.JWT_SECRET || "dev-secret",
-  userSchema: z.object({
-    email: z.email(),
-    password: z.string().min(8),
-    name: z.string().optional(),
-  }),
-  requireValidation: true,
-});
-
-fastify.register(containerPlugin as any);
-fastify.register(itemPlugin as any);
-fastify.register(mediaPlugin as any);
-fastify.register(searchPlugin as any);
-fastify.register(dashboardPlugin as any);
 
 const allowedOrigins = [process.env.FRONTEND_URL];
 
@@ -51,6 +36,27 @@ await fastify.register(cors, {
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 });
+
+await fastify.register(fastifySensible);
+
+await fastify.register(errorHandler as any);
+
+await fastify.register(authPlugin as any, {
+  prisma,
+  jwtSecret: process.env.JWT_SECRET || "dev-secret",
+  userSchema: z.object({
+    email: z.email(),
+    password: z.string().min(8),
+    name: z.string().optional(),
+  }),
+  requireValidation: true,
+});
+
+await fastify.register(containerPlugin as any);
+await fastify.register(itemPlugin as any);
+await fastify.register(mediaPlugin as any);
+await fastify.register(searchPlugin as any);
+await fastify.register(dashboardPlugin as any);
 
 fastify.get("/", async (request, reply) => {
   return { hello: "world" };

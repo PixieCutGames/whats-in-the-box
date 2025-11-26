@@ -1,4 +1,5 @@
 import { FastifyJwtNamespace } from "@fastify/jwt";
+import { HttpErrors } from "@fastify/sensible";
 import { PrismaClient } from "@prisma/client";
 import "fastify";
 import { ZodObject } from "zod";
@@ -14,6 +15,7 @@ declare module "fastify" {
     userSchema?: ZodObject;
     requireValidation?: boolean;
     authenticate: (req: any, reply: any) => Promise<void>;
+    httpErrors: HttpErrors;
   }
 }
 

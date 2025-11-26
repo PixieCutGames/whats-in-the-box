@@ -21,6 +21,7 @@ interface AuthOptions {
 }
 
 const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
+  console.log("Plugin loaded:", "🔒 auth plugin");
   if (!opts.prisma) throw new Error("prisma client is required");
   if (!opts.jwtSecret) throw new Error("jwtSecret is required");
 
