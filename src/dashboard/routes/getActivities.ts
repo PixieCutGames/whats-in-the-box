@@ -11,7 +11,7 @@ const getActivitiesRoute: FastifyPluginAsync = async (fastify, opts) => {
       const logs = await fastify.prisma.activity.findMany({
         where: { userId },
         orderBy: { createdAt: "desc" },
-        take: 10, // or any limit
+        take: 6, // or any limit
       });
 
       return {

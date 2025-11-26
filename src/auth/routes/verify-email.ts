@@ -4,7 +4,7 @@ import { sendWelcomeEmail } from "../../emails/sendWelcomeEmail.js";
 const verifyEmailRoute: FastifyPluginAsync = async (fastify, opts) => {
   fastify.get("/verify-email", async (request, reply) => {
     const { token } = request.query as { token?: string };
-    if (!token) return reply.code(404).send({ error: "Token required" });
+    if (!token) throw fastify.httpErrors.notFound("Token required");
 
     const user = await fastify.prisma.user.findUnique({
       where: { verificationToken: token },
@@ -16,7 +16,7 @@ const verifyEmailRoute: FastifyPluginAsync = async (fastify, opts) => {
       !user.verificationExpiresAt ||
       user.verificationExpiresAt < new Date()
     ) {
-      return reply.code(404).send({ error: "Invalid or expired token" });
+      throw fastify.httpErrors.badRequest("Invalid or expired token.");
     }
 
     await fastify.prisma.user.update({

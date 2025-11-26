@@ -7,6 +7,7 @@ import createRoute from "../routes/create.js";
 import updateRoute from "../routes/update.js";
 
 const itemPlugin = fp(async (fastify: FastifyInstance) => {
+  console.log("Plugin loaded:", "🧩 items plugin");
   // register routes
   fastify.register(getAllRoute, { prefix: "/items" });
   fastify.register(getByIdRoute, { prefix: "/item" });

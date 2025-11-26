@@ -18,10 +18,9 @@ const resendVerificationRoute: FastifyPluginAsync = async (fastify) => {
       const user = await fastify.prisma.user.findFirst({
         where: { OR: [{ email }, { verificationToken }] },
       });
-      console.log(user);
 
       if (!user) {
-        return reply.code(404).send({ error: "User not found" });
+        throw fastify.httpErrors.notFound("User not found");
       }
 
       const token = crypto.randomBytes(32).toString("hex");

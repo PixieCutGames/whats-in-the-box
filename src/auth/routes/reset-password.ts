@@ -34,7 +34,7 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
       });
 
       if (!tokenRecord) {
-        return reply.status(400).send({ message: "Invalid or expired token." });
+        throw fastify.httpErrors.badRequest("Invalid or expired token.");
       }
 
       // 3. Check expiry
@@ -46,7 +46,7 @@ const resetPasswordRoute: FastifyPluginAsync = async (fastify) => {
           },
         });
 
-        return reply.status(400).send({ message: "Token has expired." });
+        throw fastify.httpErrors.badRequest("Token has expired.");
       }
 
       // 4. Update user password

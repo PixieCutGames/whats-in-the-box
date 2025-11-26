@@ -28,7 +28,7 @@ const registerRoute: FastifyPluginAsync = async (fastify) => {
         where: { email: parsed.email },
       });
       if (existing) {
-        return reply.status(409).send({ message: "Email already in use" });
+        throw fastify.httpErrors.conflict("Email already in use");
       }
 
       let token: string | undefined;

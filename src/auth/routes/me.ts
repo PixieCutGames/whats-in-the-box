@@ -6,25 +6,20 @@ const meRoute: FastifyPluginAsync = async (fastify, opts) => {
     { preHandler: fastify.authenticate },
     async (request, reply) => {
       const userId = request.user.sub;
-      try {
-        const user = await fastify.prisma.user.findUnique({
-          where: { id: userId },
-          omit: {
-            password: true,
-            verificationToken: true,
-            verificationExpiresAt: true,
-          },
-        });
+      const user = await fastify.prisma.user.findUnique({
+        where: { id: userId },
+        omit: {
+          password: true,
+          verificationToken: true,
+          verificationExpiresAt: true,
+        },
+      });
 
-        if (!user) {
-          return reply.code(404).send({ error: "User not found" });
-        }
-
-        return { user };
-      } catch (err) {
-        console.log(err);
-        return reply.code(500).send({ error: "Internal server error" });
+      if (!user) {
+        throw fastify.httpErrors.notFound("User not found");
       }
+
+      return reply.send({ user });
     }
   );
 };
