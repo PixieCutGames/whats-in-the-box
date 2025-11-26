@@ -105,7 +105,17 @@ const errorHandler = fp(async (fastify: FastifyInstance) => {
     }
 
     // ------------------------------
-    // 6. AUTHENTICATION HOOK ERRORS
+    // 6. BAD REQUEST ERRORS
+    // ------------------------------
+    if (err.statusCode === 404) {
+      return reply.status(404).send({
+        error: "BadRequest",
+        message: err.message || "Bad request.",
+      });
+    }
+
+    // ------------------------------
+    // 7. AUTHENTICATION HOOK ERRORS
     // ------------------------------
     if (err.statusCode === 401) {
       return reply.status(401).send({
@@ -115,7 +125,7 @@ const errorHandler = fp(async (fastify: FastifyInstance) => {
     }
 
     // ------------------------------
-    // 6. FORBIDDEN ERRORS
+    // 8. FORBIDDEN ERRORS
     // ------------------------------
     if (err.statusCode === 403) {
       return reply.status(403).send({
@@ -125,7 +135,27 @@ const errorHandler = fp(async (fastify: FastifyInstance) => {
     }
 
     // ------------------------------
-    // 8. FALLBACK (500 INTERNAL ERROR)
+    // 9. FORBIDDEN ERRORS
+    // ------------------------------
+    if (err.statusCode === 404) {
+      return reply.status(404).send({
+        error: "NOotFound",
+        message: err.message || "Resource not found.",
+      });
+    }
+
+    // ------------------------------
+    // 10. CONFLICT ERRORS
+    // ------------------------------
+    if (err.statusCode === 409) {
+      return reply.status(409).send({
+        error: "Conflict",
+        message: err.message || "Conflict occurred.",
+      });
+    }
+
+    // ------------------------------
+    // 11. FALLBACK (500 INTERNAL ERROR)
     // ------------------------------
     fastify.log.error(err, "🔥 🔥 🔥 "); // logs full stack trace internally
 
