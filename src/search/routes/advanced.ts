@@ -18,7 +18,7 @@ const advancedRoute: FastifyPluginAsync = async (fastify, opts) => {
     { preHandler: fastify.authenticate },
     async (request, reply) => {
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const {
         query,
@@ -124,7 +124,7 @@ const advancedRoute: FastifyPluginAsync = async (fastify, opts) => {
         };
       });
 
-      return result;
+      return reply.send(result);
     }
   );
 };

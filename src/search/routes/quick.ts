@@ -11,7 +11,7 @@ const quickRoute: FastifyPluginAsync = async (fastify, opts) => {
     { preHandler: fastify.authenticate },
     async (request, reply) => {
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const body = request.params as { query: string };
       const { query } = quickSearchSchema.parse({ query: body.query });
@@ -51,7 +51,7 @@ const quickRoute: FastifyPluginAsync = async (fastify, opts) => {
         return { containers, items };
       });
 
-      return result;
+      return reply.send(result);
     }
   );
 };

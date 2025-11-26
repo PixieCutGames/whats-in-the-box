@@ -28,7 +28,7 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
         throw fastify.httpErrors.notFound("Container not found");
       }
 
-      return {
+      return reply.send({
         container: {
           ...container,
           imageUrl: container.imageId
@@ -43,7 +43,7 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
             };
           }),
         },
-      };
+      });
     }
   );
 };

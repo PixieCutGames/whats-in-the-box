@@ -25,45 +25,40 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
       const body = request.body as any;
       const parsed = createSchema.parse(body);
 
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
+
+      const item = await fastify.prisma.item.create({
+        data: {
+          ...parsed,
+          userId,
+        },
+        include: {
+          container: {
+            select: {
+              name: true,
+              id: true,
+            },
+          },
+        },
+      });
 
       try {
-        const item = await fastify.prisma.item.create({
+        await fastify.prisma.activity.create({
           data: {
-            ...parsed,
             userId,
-          },
-          include: {
-            container: {
-              select: {
-                name: true,
-                id: true,
-              },
+            type: "item_created",
+            message: `Added "${parsed.name}" to ${item.container.name}`,
+            metadata: {
+              itemId: item.id,
+              containerId: parsed.containerId,
             },
           },
         });
-
-        try {
-          await fastify.prisma.activity.create({
-            data: {
-              userId,
-              type: "item_created",
-              message: `Added "${parsed.name}" to ${item.container.name}`,
-              metadata: {
-                itemId: item.id,
-                containerId: parsed.containerId,
-              },
-            },
-          });
-        } catch (error) {
-          console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
-        }
-
-        return reply.code(201).send({ item });
       } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: "Internal server error" });
+        console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
       }
+
+      return reply.code(201).send({ item });
     }
   );
 };

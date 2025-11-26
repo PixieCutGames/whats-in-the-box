@@ -57,7 +57,7 @@ const updateRoute: FastifyPluginAsync = async (fastify) => {
         console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
       }
 
-      return { container: updated };
+      return reply.send({ container: updated });
     }
   );
 };

@@ -20,7 +20,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
         take: limit ? Number(limit) : undefined,
       });
 
-      return {
+      return reply.send({
         containers: containers.map((c: any) => ({
           ...c,
           itemsCount: c._count.items,
@@ -29,7 +29,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
             ? `${process.env.CLOUDINARY_IMAGE_URL}${c.imageId}`
             : null,
         })),
-      };
+      });
     }
   );
 };

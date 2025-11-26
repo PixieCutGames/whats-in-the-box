@@ -29,7 +29,7 @@ const loginRoute: FastifyPluginAsync = async (fastify, opts) => {
       { expiresIn: "30d" }
     );
 
-    reply.send({
+    return reply.send({
       accessToken,
       refreshToken,
       user: { id: user.id, email: user.email, name: user.name },

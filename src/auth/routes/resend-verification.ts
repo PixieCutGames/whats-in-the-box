@@ -39,7 +39,7 @@ const resendVerificationRoute: FastifyPluginAsync = async (fastify) => {
         console.log("sent", res.data, res.error);
       }
 
-      reply.send({
+      return reply.send({
         verificationToken: token,
         verificationLink,
       });

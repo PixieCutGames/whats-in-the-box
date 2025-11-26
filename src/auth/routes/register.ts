@@ -59,7 +59,7 @@ const registerRoute: FastifyPluginAsync = async (fastify) => {
         console.log("sent", res.data, res.error);
       }
 
-      reply.send({
+      return reply.send({
         user: { id: user.id, email: user.email, name: user.name },
         verificationToken: token,
         verificationLink,

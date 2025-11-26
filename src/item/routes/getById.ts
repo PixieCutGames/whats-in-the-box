@@ -7,7 +7,7 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
     async (request, reply) => {
       const { id } = request.params as { id: string };
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const item = await fastify.prisma.item.findFirst({
         where: { id, userId },
@@ -23,10 +23,10 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
       });
 
       if (!item) {
-        return reply.code(404).send({ message: "Item not found." });
+        throw fastify.httpErrors.notFound("Item not found.");
       }
 
-      return {
+      return reply.send({
         item: {
           ...item,
           imageUrl: item.imageId
@@ -39,7 +39,7 @@ const getByIdRoute: FastifyPluginAsync = async (fastify, opts) => {
               : null,
           },
         },
-      };
+      });
     }
   );
 };
