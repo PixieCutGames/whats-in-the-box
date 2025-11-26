@@ -25,44 +25,39 @@ const updateRoute: FastifyPluginAsync = async (fastify) => {
       const body = request.body as any;
       const parsed: any = updateSchema.parse(body);
 
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
+
+      const existing = await fastify.prisma.container.findFirst({
+        where: { id, userId },
+      });
+
+      if (!existing) {
+        throw fastify.httpErrors.notFound("Container not found");
+      }
+
+      const updated = await fastify.prisma.container.update({
+        where: { id },
+        data: parsed,
+      });
+
+      // TODO: replace old image with a new one and delete the old one
 
       try {
-        const existing = await fastify.prisma.container.findFirst({
-          where: { id, userId },
-        });
-
-        if (!existing) {
-          return reply.code(404).send({ message: "Container not found." });
-        }
-
-        const updated = await fastify.prisma.container.update({
-          where: { id },
-          data: parsed,
-        });
-
-        // TODO: replace old image with a new one and delete the old one
-
-        try {
-          await fastify.prisma.activity.create({
-            data: {
-              userId,
-              type: "container_updated",
-              message: `Updated "${parsed.name}"`,
-              metadata: {
-                containerId: id,
-              },
+        await fastify.prisma.activity.create({
+          data: {
+            userId,
+            type: "container_updated",
+            message: `Updated "${parsed.name}"`,
+            metadata: {
+              containerId: id,
             },
-          });
-        } catch (error) {
-          console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
-        }
-
-        return { container: updated };
+          },
+        });
       } catch (error) {
-        console.log(error);
-        return reply.code(500).send({ error: "Internal server error" });
+        console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
       }
+
+      return { container: updated };
     }
   );
 };

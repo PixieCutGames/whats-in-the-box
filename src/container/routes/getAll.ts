@@ -7,7 +7,7 @@ const getAllRoute: FastifyPluginAsync = async (fastify, opts) => {
     async (request, reply) => {
       const { limit } = request.params as { limit: string | undefined };
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const containers = await fastify.prisma.container.findMany({
         where: { userId },
