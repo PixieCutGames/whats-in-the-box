@@ -6,7 +6,7 @@ const getStatsRoute: FastifyPluginAsync = async (fastify, opts) => {
     { preHandler: fastify.authenticate },
     async (request, reply) => {
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const containers = await fastify.prisma.container.count({
         where: {
@@ -33,12 +33,12 @@ const getStatsRoute: FastifyPluginAsync = async (fastify, opts) => {
         },
       });
 
-      return {
+      return reply.send({
         containers,
         items,
         lastUpdatedContainer,
         lastUpdatedItem,
-      };
+      });
     }
   );
 };

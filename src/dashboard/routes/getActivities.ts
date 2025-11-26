@@ -6,7 +6,7 @@ const getActivitiesRoute: FastifyPluginAsync = async (fastify, opts) => {
     { preHandler: fastify.authenticate },
     async (request, reply) => {
       const userId = request.user.sub;
-      if (!userId) return reply.code(404).send({ error: "Unauthorized" });
+      if (!userId) throw fastify.httpErrors.unauthorized("Unauthorized");
 
       const logs = await fastify.prisma.activity.findMany({
         where: { userId },
@@ -14,9 +14,9 @@ const getActivitiesRoute: FastifyPluginAsync = async (fastify, opts) => {
         take: 6, // or any limit
       });
 
-      return {
+      return reply.send({
         logs,
-      };
+      });
     }
   );
 };
