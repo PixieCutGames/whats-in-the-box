@@ -12,6 +12,8 @@ const meRoute: FastifyPluginAsync = async (fastify, opts) => {
           password: true,
           verificationToken: true,
           verificationExpiresAt: true,
+          providerId: true,
+          provider: true,
         },
       });
 
