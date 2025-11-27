@@ -48,7 +48,15 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
         console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
       }
 
-      return reply.code(201).send({ container });
+      return reply.code(201).send({
+        container: {
+          ...container,
+          imageUrl: container.imageId
+            ? `${process.env.CLOUDINARY_IMAGE_URL}${container.imageId}`
+            : null,
+          items: [],
+        },
+      });
     }
   );
 };
