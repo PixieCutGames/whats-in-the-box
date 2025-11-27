@@ -37,6 +37,7 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
             select: {
               name: true,
               id: true,
+              imageId: true,
             },
           },
         },
@@ -58,7 +59,20 @@ const createRoute: FastifyPluginAsync = async (fastify) => {
         console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
       }
 
-      return reply.code(201).send({ item });
+      return reply.code(201).send({
+        item: {
+          ...item,
+          imageUrl: item.imageId
+            ? `${process.env.CLOUDINARY_IMAGE_URL}${item.imageId}`
+            : null,
+          container: {
+            ...item.container,
+            imageUrl: item.container.imageId
+              ? `${process.env.CLOUDINARY_IMAGE_URL}${item.container.imageId}`
+              : null,
+          },
+        },
+      });
     }
   );
 };

@@ -38,6 +38,17 @@ const updateRoute: FastifyPluginAsync = async (fastify) => {
       const updated = await fastify.prisma.container.update({
         where: { id },
         data: parsed,
+        include: {
+          items: {
+            select: {
+              id: true,
+              name: true,
+              quantity: true,
+              updatedAt: true,
+              imageId: true,
+            },
+          },
+        },
       });
 
       // TODO: replace old image with a new one and delete the old one
@@ -57,7 +68,22 @@ const updateRoute: FastifyPluginAsync = async (fastify) => {
         console.log('ERROR: COULDN"T SAVE ACTIVITY', error);
       }
 
-      return reply.send({ container: updated });
+      return reply.send({
+        container: {
+          ...updated,
+          imageUrl: updated.imageId
+            ? `${process.env.CLOUDINARY_IMAGE_URL}${updated.imageId}`
+            : null,
+          items: updated.items?.map((i: any) => {
+            return {
+              ...i,
+              imageUrl: i.imageId
+                ? `${process.env.CLOUDINARY_IMAGE_URL}${i.imageId}`
+                : null,
+            };
+          }),
+        },
+      });
     }
   );
 };
