@@ -12,6 +12,8 @@ import verifyEmailRoute from "../routes/verify-email.js";
 import forgotPasswordRoute from "../routes/forgot-password.js";
 import resetPasswordRoute from "../routes/reset-password.js";
 import refreshTokenRoute from "../routes/refresh-token.js";
+import googleAuthRoute from "../routes/google-auth.js";
+import googleCallbackRoute from "../routes/google-callback.js";
 
 interface AuthOptions {
   prisma: any; // PrismaClient type in consuming app
@@ -53,7 +55,11 @@ const authPlugin = fp(async (fastify: FastifyInstance, opts: AuthOptions) => {
   fastify.register(resetPasswordRoute, { prefix: "/auth" });
   fastify.register(refreshTokenRoute, { prefix: "/auth" });
 
+  fastify.register(googleAuthRoute, { prefix: "/auth" });
+  fastify.register(googleCallbackRoute, { prefix: "/auth" });
+
   // TODO: social media login
+  // TODO: add delete user
 
   // add decorator to verify and get current user (example)
   fastify.decorate("authenticate", async (request, reply) => {
