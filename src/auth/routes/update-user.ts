@@ -43,6 +43,10 @@ const updateUserRoute: FastifyPluginAsync = async (fastify, opts) => {
         data: { ...parsed },
         omit: {
           password: true,
+          verificationToken: true,
+          verificationExpiresAt: true,
+          providerId: true,
+          provider: true,
         },
       });
 
