@@ -3637,6 +3637,7 @@ export namespace Prisma {
     description: string | null
     location: string | null
     imageId: string | null
+    pinned: boolean | null
     updatedAt: Date | null
     createdAt: Date | null
   }
@@ -3649,6 +3650,7 @@ export namespace Prisma {
     description: string | null
     location: string | null
     imageId: string | null
+    pinned: boolean | null
     updatedAt: Date | null
     createdAt: Date | null
   }
@@ -3661,6 +3663,7 @@ export namespace Prisma {
     description: number
     location: number
     imageId: number
+    pinned: number
     updatedAt: number
     createdAt: number
     _all: number
@@ -3675,6 +3678,7 @@ export namespace Prisma {
     description?: true
     location?: true
     imageId?: true
+    pinned?: true
     updatedAt?: true
     createdAt?: true
   }
@@ -3687,6 +3691,7 @@ export namespace Prisma {
     description?: true
     location?: true
     imageId?: true
+    pinned?: true
     updatedAt?: true
     createdAt?: true
   }
@@ -3699,6 +3704,7 @@ export namespace Prisma {
     description?: true
     location?: true
     imageId?: true
+    pinned?: true
     updatedAt?: true
     createdAt?: true
     _all?: true
@@ -3784,6 +3790,7 @@ export namespace Prisma {
     description: string | null
     location: string | null
     imageId: string | null
+    pinned: boolean
     updatedAt: Date
     createdAt: Date
     _count: ContainerCountAggregateOutputType | null
@@ -3813,6 +3820,7 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageId?: boolean
+    pinned?: boolean
     updatedAt?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3828,6 +3836,7 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageId?: boolean
+    pinned?: boolean
     updatedAt?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3841,6 +3850,7 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageId?: boolean
+    pinned?: boolean
     updatedAt?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3854,11 +3864,12 @@ export namespace Prisma {
     description?: boolean
     location?: boolean
     imageId?: boolean
+    pinned?: boolean
     updatedAt?: boolean
     createdAt?: boolean
   }
 
-  export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "userId" | "name" | "description" | "location" | "imageId" | "updatedAt" | "createdAt", ExtArgs["result"]["container"]>
+  export type ContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "userId" | "name" | "description" | "location" | "imageId" | "pinned" | "updatedAt" | "createdAt", ExtArgs["result"]["container"]>
   export type ContainerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     items?: boolean | Container$itemsArgs<ExtArgs>
@@ -3885,6 +3896,7 @@ export namespace Prisma {
       description: string | null
       location: string | null
       imageId: string | null
+      pinned: boolean
       updatedAt: Date
       createdAt: Date
     }, ExtArgs["result"]["container"]>
@@ -4319,6 +4331,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Container", 'String'>
     readonly location: FieldRef<"Container", 'String'>
     readonly imageId: FieldRef<"Container", 'String'>
+    readonly pinned: FieldRef<"Container", 'Boolean'>
     readonly updatedAt: FieldRef<"Container", 'DateTime'>
     readonly createdAt: FieldRef<"Container", 'DateTime'>
   }
@@ -7056,6 +7069,7 @@ export namespace Prisma {
     description: 'description',
     location: 'location',
     imageId: 'imageId',
+    pinned: 'pinned',
     updatedAt: 'updatedAt',
     createdAt: 'createdAt'
   };
@@ -7391,6 +7405,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Container"> | string | null
     location?: StringNullableFilter<"Container"> | string | null
     imageId?: StringNullableFilter<"Container"> | string | null
+    pinned?: BoolFilter<"Container"> | boolean
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -7405,6 +7420,7 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     imageId?: SortOrderInput | SortOrder
+    pinned?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -7422,6 +7438,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Container"> | string | null
     location?: StringNullableFilter<"Container"> | string | null
     imageId?: StringNullableFilter<"Container"> | string | null
+    pinned?: BoolFilter<"Container"> | boolean
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -7436,6 +7453,7 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     imageId?: SortOrderInput | SortOrder
+    pinned?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
     _count?: ContainerCountOrderByAggregateInput
@@ -7454,6 +7472,7 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Container"> | string | null
     location?: StringNullableWithAggregatesFilter<"Container"> | string | null
     imageId?: StringNullableWithAggregatesFilter<"Container"> | string | null
+    pinned?: BoolWithAggregatesFilter<"Container"> | boolean
     updatedAt?: DateTimeWithAggregatesFilter<"Container"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Container"> | Date | string
   }
@@ -7779,6 +7798,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutContainerInput
@@ -7793,6 +7813,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
     items?: ItemUncheckedCreateNestedManyWithoutContainerInput
@@ -7805,6 +7826,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutContainerNestedInput
@@ -7819,6 +7841,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
@@ -7832,6 +7855,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
   }
@@ -7843,6 +7867,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7855,6 +7880,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8270,6 +8296,7 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     imageId?: SortOrder
+    pinned?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -8282,6 +8309,7 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     imageId?: SortOrder
+    pinned?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -8294,6 +8322,7 @@ export namespace Prisma {
     description?: SortOrder
     location?: SortOrder
     imageId?: SortOrder
+    pinned?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -9035,6 +9064,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
     items?: ItemCreateNestedManyWithoutContainerInput
@@ -9047,6 +9077,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
     items?: ItemUncheckedCreateNestedManyWithoutContainerInput
@@ -9176,6 +9207,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Container"> | string | null
     location?: StringNullableFilter<"Container"> | string | null
     imageId?: StringNullableFilter<"Container"> | string | null
+    pinned?: BoolFilter<"Container"> | boolean
     updatedAt?: DateTimeFilter<"Container"> | Date | string
     createdAt?: DateTimeFilter<"Container"> | Date | string
   }
@@ -9465,6 +9497,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutContainerInput
@@ -9478,6 +9511,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
   }
@@ -9544,6 +9578,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutContainerNestedInput
@@ -9557,6 +9592,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9704,6 +9740,7 @@ export namespace Prisma {
     description?: string | null
     location?: string | null
     imageId?: string | null
+    pinned?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
   }
@@ -9756,6 +9793,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: ItemUpdateManyWithoutContainerNestedInput
@@ -9768,6 +9806,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: ItemUncheckedUpdateManyWithoutContainerNestedInput
@@ -9780,6 +9819,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    pinned?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
