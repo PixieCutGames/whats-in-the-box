@@ -5,6 +5,8 @@ import createRoute from "../routes/create.js";
 import getAllRoute from "../routes/getAll.js";
 import updateRoute from "../routes/update.js";
 import deleteRoute from "../routes/delete.js";
+import pinRoute from "../routes/pin.js";
+import unpinRoute from "../routes/unpin.js";
 
 const containerPlugin = fp(async (fastify: FastifyInstance) => {
   console.log("Plugin loaded:", "📦 container plugin");
@@ -14,6 +16,9 @@ const containerPlugin = fp(async (fastify: FastifyInstance) => {
   fastify.register(createRoute, { prefix: "/container" });
   fastify.register(updateRoute, { prefix: "/container" });
   fastify.register(deleteRoute, { prefix: "/container" });
+
+  fastify.register(pinRoute, { prefix: "/container" });
+  fastify.register(unpinRoute, { prefix: "/container" });
 });
 
 export default containerPlugin;
