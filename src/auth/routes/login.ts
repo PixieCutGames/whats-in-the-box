@@ -3,7 +3,7 @@ import { z } from "zod";
 import { verifyPassword } from "../utils/password.js";
 
 const schema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   password: z.string(),
 });
 
